@@ -1,0 +1,183 @@
+<div id="discountedit-secondlayer">
+    <form name="addnewcategory" (ngSubmit)="saveAddNewProduct(model.category)">
+    <div class="row">
+    <div class="col-1 col-md-1 col-sm-1 col-lg-1"></div>
+    <div class="col-11 col-md-11 col-sm-11 col-lg-11">
+        <div class="row" style="margin-top: 15px;">
+            <i class="fa fa-plus-circle" id="disedit-icon" aria-hidden="true"></i> 
+            <h2>Add New Product</h2>
+        </div>
+    </div>
+    </div>
+    <div style="height: 10px;"></div>
+    <div class="row">
+    <div class="col-1 col-md-1 col-sm-1 col-lg-1"></div>
+    
+    <div class="col-6 col-md-6 col-sm-6 col-lg-6">
+
+        <div class="row">
+            <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+            <label id="text-cursor">Category :</label>
+            </div>
+            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                <select id="editselect-box"  name ="selectcategory" [(ngModel)]="model.categorycode" 
+                #categorycode="ngModel" required>
+                <option [ngValue]="undefined" hidden selected> Select Product Category </option>
+                <option id="editselect-box" *ngFor="let itemcategory of allcategorylist" value="{{itemcategory.name}}-{{itemcategory.categorycode}}"> {{itemcategory.name}}-{{itemcategory.categorycode}} </option>
+                </select>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                <label id="text-cursor">Product Name:</label>
+            </div>
+            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                <input type="text" id="name-box" placeholder="Fiber Kevlar Matt"
+                [(ngModel)]="model.productname" 
+                #productname="ngModel" 
+                placeholder="Product Name" name="productname"/>
+            </div>
+        </div>
+
+        <br/>
+        <div 
+        class="row">
+            <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                <label id="text-cursor">Description:</label>
+            </div>
+            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                <textarea type="text" id="description-box"
+                [(ngModel)]="model.description" 
+                #description="ngModel" 
+                 placeholder="Product Description" name="description">
+                 </textarea>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+            <label id="text-cursor">Vendor:</label>
+            </div>
+            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                <select id="editselect-box" name ="vendorcode" [(ngModel)]="model.vendorcode"
+                #vendorcode="ngModel" 
+                 vendorcode>
+                 <option [ngValue]="undefined" hidden selected> Select Vendor </option>
+                 <option id="editselect-box" *ngFor="let item of vendornamelist" 
+                    value="{{item.vendorName}}-{{item.vendorcode}}"> {{item.vendorName}}-{{item.vendorcode}} </option>
+                </select>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                <label id="text-cursor">Price:</label>
+            </div>
+            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                <input type="text" id="price-box" 
+                [(ngModel)]="model.price" 
+                #price="ngModel" (change)="getSellingPrice(model.price,model.tax,model.margin)"
+                 placeholder="IDR X.XXX.XXX" name="price"/>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                <div class="row">
+                    <label id="text-cursor" style="margin-left: 20px;">Tax:</label>
+                    <input type="text" id="tax-box"
+                    [(ngModel)]="model.tax" 
+                    #tax="ngModel"  (change)="getSellingPrice(model.price,model.tax,model.margin)"
+                    placeholder="10%" name="tax"/>
+                    &nbsp;&nbsp;&nbsp;
+                    <label id="text-cursor">Margin:</label>
+                    &nbsp;&nbsp;
+                    <input type="text" id="margin-box"
+                    [(ngModel)]="model.margin" 
+                    #margin="ngModel"  (change)="getSellingPrice(model.price,model.tax,model.margin)"
+                    placeholder="40%" name="margin"/>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                <label id="text-cursor">Selling Price:</label>
+            </div>
+            <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                <input type="text" id="productcode-box"
+                [(ngModel)]="model.sellingprice" 
+                #sellingprice="ngModel" value="{{ model.sellingprice }}"
+                placeholder="IDR 30.000" name="sellingprice"/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-5 col-md-5 col-sm-5 col-lg-5">
+          <label id="text-cursor">Add Product Picture</label> 
+          <div class="row">
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+            &nbsp;
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+            &nbsp;
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+         </div>
+
+         <br/>
+         <div class="row">
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+            &nbsp;
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+            &nbsp;
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+         </div>
+
+         <br/>
+         <div class="row">
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+            &nbsp;
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+            &nbsp;
+            <div id="addproductpic-box">
+                <i class="fa fa-plus-circle" id="addpicture-icon" aria-hidden="true"></i> 
+            </div>
+         </div>
+    </div>
+
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-3 col-md-3 col-sm-3 col-lg-3"></div>
+        <div class="col-3 col-md-3 col-sm-3 col-lg-3">
+        <button id="save-btn">Save</button>
+        </div>
+        <div class="col-3 col-md-3 col-sm-3 col-lg-3">
+        <button id="cancel-btn" (click)="close($event); false">Cancel</button>
+        </div>
+        <div class="col-3 col-md-3 col-sm-3 col-lg-3"></div>
+    </div>
+</form>
+</div>

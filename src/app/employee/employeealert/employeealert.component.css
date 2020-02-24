@@ -1,0 +1,10 @@
+div{
+    background-color:#21ba45;
+    color: white;
+    text-align:center;
+}
+
+*{
+    font-family:'Lato',Georgia,Arial,sans-serif;
+    font-size: medium;
+}

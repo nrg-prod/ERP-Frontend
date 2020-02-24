@@ -1,0 +1,22 @@
+* {
+    font-family: 'Lato',Georgia,Arial,sans-serif;
+
+  }
+
+@media (max-width: 1024px) and (min-width: 810px) and (orientation: landscape){
+    #landing-content{
+        margin-left: 250px;
+    }
+}
+
+@media (max-width: 810px) and (min-width: 768px) and (orientation: landscape){
+    #landing-content{
+        margin-left: auto;
+    }
+}
+
+@media  (max-width: 1280px) and (min-width: 1025px) {
+    #landing-content{
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,141 @@
+* {
+    font-family: 'Lato',Georgia,Arial,sans-serif;
+    font-size:13px;
+    color:white;
+}
+::ng-deep .addpromotion .mat-dialog-container {
+    background-color: #434F5B;
+    width: 500px;
+    height: 450px;
+    padding: 17px;
+    overflow: hidden;
+}
+
+.autosearch1 ::ng-deep .completer-input {
+    font-family: fontawesome;
+    font-size: 12px;
+    width: 100%;
+    height: 80%;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+    margin-left: -20px;
+    color:white;
+    }
+
+    .promotion-periodbox2 ::ng-deep .mat-form-field {
+        font-family: fontawesome;
+        font-size: 12px;
+        width: 100%;
+        height: 80%;
+        background: #272E34;
+        border: none;
+        box-shadow: none;
+        margin-left: -20px;
+        color:white;
+        }
+
+h2{
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+    font-weight: bold;
+}  
+.hrline{
+    background-color: white;
+    width: 10px;
+    height: 0px;
+}
+.hl{
+    border-left: 2px solid black;
+    height: 10px;
+}
+#dicountinput-box{
+    width: 40px;
+    height: 35px;
+    text-align: end;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#qtyinput-box{
+    width: 35px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#box-dialouge{
+    background: #333C45;
+    height: 100%;
+}
+#selectbox-category{
+    width: 100%;
+    height: 80%px;
+    border: none;
+    background: #272E34;
+    box-shadow: none;
+    margin-left: -20px;
+}
+#searchicon2{
+    font-family: fontawesome;
+    font-size: 20px;
+    width: 100%;
+    height: 80%;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+    margin-left: -20px;
+}
+input[type="search"] {
+    font-family: fontawesome;
+    font-size: 20px;
+    width: 100%;
+    height: 80%;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+    margin-left: -20px;
+}
+#freegift-box{
+    width: 120px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#others-box{
+    width: 120px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#promotion-periodbox{
+    width: 31%;
+    height: 35px;
+    border: none;
+    color: #636A70;
+    background: #272E34;
+    box-shadow: none;
+}
+#promotion-periodbox2{
+    width: 31%;
+    height: 35px;
+    border: none;
+    color: #636A70;
+    background: #272E34;
+    box-shadow: none;
+}
+#save-btn{
+    width: 140px;
+    height: 35px;
+    background: #51AF57;
+    border: none;
+}
+#cancel-btn{
+    width: 140px;
+    height: 35px;
+    background: #FF0000;
+    border: none;
+}

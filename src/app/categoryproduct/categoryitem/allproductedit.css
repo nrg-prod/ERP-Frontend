@@ -1,0 +1,107 @@
+*{
+    font-family: 'Lato',Georgia,Arial,sans-serif;
+    font-size:13px;
+    color:white;
+}
+::ng-deep .allproductedit .mat-dialog-container {
+    background-color: #434F5B;
+    width: 880px;
+    height: 586px;
+    padding: 17px;
+    overflow: hidden;
+}
+#text-cursor{
+    cursor: text;
+}
+h2{
+    margin: 3px 3px 3px 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#discountedit-secondlayer{
+    background: #333C45;
+    height: 100%;
+    width: 100%;
+}
+#disedit-icon{
+    font-size: 35px;
+    color: white;
+    text-align: center;
+}
+#editselect-box{
+    width: 220px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#name-box{
+    width: 220px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#description-box{
+    width: 220px;
+    height: 75px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+    font-size: 10px;
+}
+#tax-box{
+    width: 71px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+    margin-left: 114px;
+}
+#margin-box{
+    width: 71px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#price-box{
+    width: 220px;
+    height: 35px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#addproductpic-box{
+    height: 100px;
+    width: 110px;
+    text-align: center;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#addpicture-icon{
+    font-size: 40px;
+    color: #51575C;
+    text-align: center;
+    margin: 30px;
+}
+#productcode-box{
+    background-color: #999999;
+    width: 220px;
+    height: 35px;
+    color: black;
+}
+#save-btn{
+    width: 140px;
+    height: 35px;
+    background: #51AF57;
+    border: none;
+}
+#cancel-btn{
+    width: 140px;
+    height: 35px;
+    background: #FF0000;
+    border: none;
+}
+

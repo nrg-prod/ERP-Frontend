@@ -1,0 +1,59 @@
+*{
+    font-family: 'Lato',Georgia,Arial,sans-serif;
+    font-size:13px;
+    color:white;
+}
+::ng-deep .categoryeditdelete .mat-dialog-container{
+    background-color: #434F5B;
+    width: 700px ;
+    height: 480px ;
+    padding: 17px;
+    overflow: hidden;
+}
+#editdelete-secondlayer{
+    background: #333C45;
+    width: 100%;
+    height: 100%;
+}
+#edit-del-text{
+    font-size: 23px;
+    margin: 8px;
+}
+#editdelcategory-div{
+    width: 180px;
+    height: 340px;
+    background: #272E34;
+    margin: 30px;
+    text-align: center;
+}
+#categoryname-div{
+    width: 100%;
+    height: 60px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#categorydesc-div{
+    width: 100%;
+    height: 140px;
+    background: #272E34;
+    border: none;
+    box-shadow: none;
+}
+#save-btn{
+    width: 140px;
+    height: 35px;
+    background: #51AF57;
+    border: none;
+}
+#cancel-btn{
+    width: 140px;
+    height: 35px;
+    background: #FF0000;
+    border: none;
+}
+#categoryeditdeletetext-row{
+    cursor: pointer;
+    width: 90%;
+    margin: auto;
+}

@@ -1,28 +1,34 @@
-# ERP-Frontend
-# Server Path
+# ERP2
 
-34.214.60.154
 
-# Build For Server
+## Build
 
-npm install
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-Do this one in Local PC in Visual Studio tool
+ng build --base-href=http://erp.neotural.com/ --prod --aot=true --build--optimizer=true
 
-ng build --base-href=http://erp.neotural.com/ --prod --aot
+## Development server
 
-copy only dist folder
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Do not move assert folder to server as there are many static files are uploaded mannually
+## Code scaffolding
 
-/var/www/html/
-
-We deploy into Apache Web Server path.
-
-Restart Apache service if require 
-
-# Install NPM
-npm install
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 
 
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Other Similar Tutorials
+
+[Angular Data Table Example](https://www.devglan.com/angular/angular-data-table-example).
+
+[Angular JWT Authentication](https://www.devglan.com/spring-security/angular-jwt-authentication)
+
+[Spring Boot Angular Example](https://www.devglan.com/spring-boot/spring-boot-angular-example)

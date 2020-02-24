@@ -1,0 +1,359 @@
+* {
+  font-family: 'Lato',Georgia,Arial,sans-serif;
+}
+
+#fixed-heder{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+}
+#login-background{
+  width: 35%;
+  height: 295px;
+  margin: auto;
+  background: #E1E1E0;
+}
+#login-text{
+  color: #666666;
+  text-align: center;
+  font-size: 23px;
+}
+#usericon-div{
+  background-color: #666666;
+  width: 9%;
+  height: 34px;
+  margin-top: 8px;
+}
+#user-icon{
+  font-size: 25px;
+  margin: 5px;
+  color: white;
+}
+#pwdicon-div{
+  background-color: #666666;
+  width: 9%;
+  height: 34px;
+  margin-top: 8px;
+}
+#pwd-icon{
+  font-size: 25px;
+  margin: 5px 9px;
+  color: white;
+}
+#rememberme-text{
+  font-size: 10px;
+  height: 5px;
+}
+#project-backcolor{
+  background-color: #666666;
+  width: 65%;
+  height: 36px;
+}
+#back-colorforheader{
+  background-color: #182A36;
+  border-color:#182A36;
+  height: 100px;
+}
+#logo-img{
+  width: 150px;
+  margin-top: -30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#black-color{
+  height: auto;
+  margin-top: 170px;
+
+   /* Full height    height: 100%;
+*/
+
+   /* Center and scale the image nicely */
+  
+}
+
+#fixed-heder{
+  position: fixed;
+  top: -84;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+}
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 65%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+ /* padding: 14px 20px;
+  margin: 8px 0;*/
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  font-size: 10px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 359px) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 708px;
+    margin-top: 125px;
+    margin-left: -200px;
+  }
+}
+@media (min-width: 359px) and (max-width: 374px) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 800px;
+    margin-top: 130px;
+    margin-left: -223px;
+  }
+}
+@media (min-width: 375px) and (max-width: 409px) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 845px;
+    margin-top: 135px;
+    margin-left: -238px;
+  }
+}
+@media (min-width: 410px) and (max-width: 470px) {
+  #black-color{
+    background-color: #33495c;
+    height: auto;
+    width: 880px;
+    margin-top: 150px;
+    margin-left: -238px;
+  }
+}
+@media (min-width: 471px) and (max-width: 530px) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 960px;
+    margin-top: 170px;
+    margin-left: -238px;
+  }
+}
+@media (min-width: 531px) and (max-width: 539px) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 945px;
+    margin-top: 170px;
+    margin-left: -210px;
+  }
+}
+@media (min-width: 540px) and (max-width: 600px) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 1025px;
+    margin-top: 170px;
+    margin-left: -210px;
+  }
+}
+@media (min-width: 601px) and (max-width: 767px) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 1010px;
+    margin-top: 170px;
+    margin-left: -226px;
+  }
+}
+@media (min-width: 768px) and (max-width: 810px) and (orientation: landscape) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    width: 1010px;
+    margin-top: 170px;
+    margin-left: -110px;
+  }
+}
+@media (min-width: 810px) and (max-width: 1024px) and (orientation: landscape) {
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    margin-top: 170px;
+  }
+  #user-icon{
+  font-size: 20px;
+  margin: 5px;
+  color: white;
+}
+}
+@media (min-width: 1025px) and (max-width: 1280px){
+  #black-color{
+    /*background-color: #33495c;*/
+    height: auto;
+    margin-top: 170px;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1380px) {
+  #logo-img{
+    width: 150px;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container {
+    padding: 16px;
+  }
+}
+@media (min-width: 1381px) and (max-width:2051px) {
+  #logo-img{
+    width: 150px;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container {
+    padding: 16px;
+  }
+}
+@media (min-width:2052px) and (max-width:2732px){
+  #logo-img{
+    width: 150px;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container {
+    padding: 16px;
+  }
+}
+@media (min-width:2733px) and (max-width:4102px){
+  #logo-img{
+    width: 150px;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container {
+    padding: 16px;
+  }
+}
+@media (min-width:4103px) and (max-width:5464px){
+  #logo-img{
+    width: 150px;
+    margin-top: -30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container {
+    padding: 16px;
+  }
+}
+			

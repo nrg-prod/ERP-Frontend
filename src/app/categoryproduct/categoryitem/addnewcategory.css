@@ -1,0 +1,52 @@
+* {
+    font-family: 'Lato',Georgia,Arial,sans-serif;
+    font-size:13px;
+    color:white;
+}
+::ng-deep .addnewcategory .mat-dialog-container {
+    background-color: #434F5B;
+    width: 550px;
+    height: 500px;
+    padding: 17px;
+    overflow: hidden;
+}
+h2{
+    margin: 3px 3px 3px 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+#addnew-icon{
+    font-size: 30px;
+    margin-left: 30px;
+}
+#second-layer{
+    background: #333C45;
+    width: 100%;
+    height: 100%;
+}
+#categoryname-box{
+    background: #272E34;
+    width: 390px;
+    height: 60px;
+    box-shadow: none;
+    border: none;
+}
+#categorydescription-box{
+    background: #272E34;
+    width: 390px;
+    height: 150px;
+    box-shadow: none;
+    border: none;
+}
+#save-btn{
+    width: 120px;
+    height: 45px;
+    background: #51AF57;
+    border: none;
+}
+#cancel-btn{
+    width: 120px;
+    height: 45px;
+    background: #FF0000;
+    border: none;
+}

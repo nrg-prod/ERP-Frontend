@@ -1,0 +1,983 @@
+<div class="container">
+    <div id="content">
+      <div id="main-content">
+        <mat-tab-group>
+          <mat-tab >
+            <ng-template mat-tab-label>
+              <span (click)="test()" id="tab-span-color">Vendor </span>
+            </ng-template>
+
+            <div class="col-12 col-md-12 col-lg-12"> 
+
+            <!--Vendor details start-->
+                        <div *ngIf="vendordetailsstart">
+                          <div class="row">
+                            <div style="height: 20px;width: 100%;"></div>
+                            <div class="col-4 col-md-4 col-lg-3"></div>
+                            <div class="col-8 col-md-8 col-lg-9">
+                              <div class="row">
+
+                                <div class="row" id="button-printpage">
+                                  <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
+                                  &nbsp;&nbsp;
+                                  <p id="font-size15">Print Page</p>
+                                </div>
+                
+                                &nbsp;&nbsp; &nbsp;&nbsp;
+                                <div class="row" id="button-addnewvendor" (click)="addVendor()">
+                                  <i class="fa fa-plus-circle" aria-hidden="true" id="icon-align"></i>
+                                  &nbsp;
+                                  <p id="font-size15">Add New Vendor</p>
+                                </div>
+
+                                &nbsp;&nbsp;
+                                <mat-form-field style="color: black;">
+                                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Vendor Name/Code">
+                                </mat-form-field>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <h3>VENDOR LIST</h3>
+                          <div class="row">
+                              <P>Sorted By</P>
+                              &nbsp;
+                              <p>:</p>
+                              <select aria-placeholder="join date" id="selct-joindatebox">
+                                <option>Join Date</option>
+                                <option>Vendor Code</option>
+                                <option>Vendor Name</option>
+                              </select>
+                          </div>
+
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                        <div class="mat-elevation-z8">
+                          <table mat-table #sortCol1="matSort" [dataSource]="dataSource1" matSort matSortActive="ID" matSortDirection="asc">
+                            
+                                <ng-container matColumnDef="vendorcode">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Code</th>
+                                    <td mat-cell *matCellDef="let row"> {{row.vendorcode}} </td>
+                                </ng-container>
+                
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                                    <td mat-cell *matCellDef="let row"> {{row.vendorName}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="contactnumber">
+                                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Number</th>
+                                  <td mat-cell *matCellDef="let row"> {{row.phoneNumber}} </td>
+                                </ng-container>
+
+                              <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                <td mat-cell *matCellDef="let row" > 
+                                  <div class="row" style="margin-left: 10px;">
+                                    <div id="rowview-div" (click)="vendorDetails(row.vendorcode)">
+                                        <i class="fa fa-eye" id="row-icon" aria-hidden="true"></i>    
+                                    </div>  
+                                    &nbsp;&nbsp; &nbsp;
+                                    <div id="rowprint-div" (click)="productprint()">
+                                        <i class="fa fa-print" id="row-icon" aria-hidden="true"></i>    
+                                    </div>  
+                                    &nbsp;&nbsp; &nbsp;
+                                    <div id="rowedit-div2" (click)="vendoreditDetails(row.vendorcode)">
+                                        <i class="fa fa-pencil-square-o" id="row-icon" aria-hidden="true"></i>    
+                                    </div>  
+                                    &nbsp;&nbsp; &nbsp;
+                                    <div id="rowdelete-div2" (click)="vendordelete(row.vendorcode)">
+                                        <i class="fa fa-trash-o" id="row-icon" aria-hidden="true"></i>    
+                                    </div>   
+                                </div>  
+                                </td>
+                              </ng-container>
+                
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                                <tr mat-row mat-row [ngClass]="table-row" tabindex="1" 
+                                *matRowDef="let row; columns: displayedColumns;">
+                                </tr>
+                            </table>
+                        </div>  
+                      </div>
+            <!--Vendor details end-->
+
+                    
+            <!--vendor ADD start --> 
+            <div *ngIf="vendordragAndDrop" id="vencustab" >
+              <form name="form"  (ngSubmit)=" saveVendor()">
+              <br/>
+              <div class="row">
+                  <div class="col-md-8 col-8 col-lg-9">
+                      <h3 style="text-align: center;">ADD NEW VENDOR</h3>
+                  </div>
+                  <div  class="col-md-3 col-3 col-lg-3">
+                      
+                    <button id="save-btn">
+                      <div class="row">
+                              <i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 15px;font-size: 20px;"></i>
+                              &nbsp;&nbsp;&nbsp;
+                              <p>Save</p>
+                        </div>
+                    </button>
+                  
+
+                  </div>
+              </div>
+
+              <br/><br/><br/>
+
+              <div class="example-box" id="scrolling">
+
+                    <div class="row">
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                      <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                          <div class="row" id="address">
+                              <p class="col-md-4 col-4 col-lg-4" id="text3">Vendor Name</p>
+                              <p class="col-md-1 col-1 col-lg-1" >:</p>
+                              <input type="text" id="editinput-box2" [(ngModel)]="model.vendorName" 
+                              #vendorName="ngModel" 
+                              placeholder="Enter Vendor name" name="vendorName" />
+                          </div>
+                          <div class="row" id="address">
+                              <p class="col-md-4 col-4 col-lg-4" id="text3">Phone Number</p>
+                              <p class="col-md-1 col-1 col-lg-1" >:</p>
+                              <input type="text" id="editinput-box2" [(ngModel)]="model.phoneNumber" 
+                              #phoneNumber="ngModel" 
+                              placeholder="Enter Phone Number" name="phoneNumber" />
+                          </div>
+                          <div class="row" id="address">
+                              <p class="col-md-4 col-4 col-lg-4" id="text3">Address</p>
+                              <p class="col-md-1 col-1 col-lg-1" >:</p>
+                              <input type="text" id="editinput-box2" [(ngModel)]="model.address" 
+                              #address="ngModel" 
+                              placeholder="Enter Address" name="address" />
+                          </div>
+                          <div class="row" id="address">
+                              <p class="col-md-4 col-4 col-lg-4" id="text3">City</p>
+                              <p class="col-md-1 col-1 col-lg-1" >:</p>
+                              <input type="text" id="editinput-box2" [(ngModel)]="model.city" 
+                              #city="ngModel" 
+                              placeholder="Enter City" name="city" />
+                          </div>
+                          <div class="row" id="address">
+                              <p class="col-md-4 col-4 col-lg-4" id="text3">Email Address</p>
+                              <p class="col-md-1 col-1 col-lg-1" >:</p>
+                              <input type="text" id="editinput-box2" [(ngModel)]="model.email" 
+                              #email="ngModel" 
+                              placeholder="Enter Email" name="email"/>
+                          </div>
+                          <div class="row" id="address">
+                              <p class="col-md-4 col-4 col-lg-4" id="text3">Mobile Number</p>
+                              <p class="col-md-1 col-1 col-lg-1" >:</p>
+                              <input type="text" id="editinput-box2" [(ngModel)]="model.mobileNumber" 
+                              #mobileNumber="ngModel" 
+                              placeholder="Enter Mobile Number" name="mobileNumber" />
+                          </div>
+                          <div class="row" id="address">
+                              <p class="col-md-4 col-4 col-lg-4" id="text3">Country</p>
+                              <p class="col-md-1 col-1 col-lg-1" >:</p>
+                              <select id="editselect-box2" name ="selectedCountry" [(ngModel)]="model.country" required>
+                                  <option  *ngFor="let country of countryList" value={{country}} id="black-color">{{country}}</option>     
+                              </select>  
+                          </div>
+                    </div>
+
+                    <div class="col-4 col-md-4 col-lg-4">
+                      <br/><br/><br/><br/>
+                      <div id="img-detaildiv">
+                        <br/> <br/> <br/>
+                        <h3 id="vendor-img-text">VENDOR</h3>
+                        <h3 id="vendor-img-text">LOGO/PIC</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+            </form>
+
+            <br/>
+              <div class="row">
+                <div class="col-5 col-md-5 col-lg-5"></div>
+                <div class="col-2 col-md-2 col-lg-2">
+                  <button id="button-back">
+                    <div  (click)="vendorback()">
+                        <p id="backbutton-text">BACK</p>
+                    </div>
+                  </button>
+                </div>
+                <div class="col-5 col-md-5 col-lg-5"></div>
+              </div>
+            </div>
+      <!-- vendor ADD end-->
+
+    <!-- Vendor left side deatils start(View)-->
+          <div *ngIf="vendordetails" id="vencustab">
+            <br/>
+            <div class="row">
+                <div class="col-md-3 col-5 col-lg-7">
+                    <h3>VENDOR DETAILS VIEW</h3>
+                </div>
+                    <div  class="col-md-5 col-5 col-lg-5">
+                    <div class="row">
+                        <button id="button-edit">
+                            <div class="row" (click)="vendoreditDetails()">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-top: 5px;"></i>
+                                &nbsp;
+                                <p>Edit</p>
+                            </div>
+                        </button>
+
+                        &nbsp; &nbsp; &nbsp;
+                        <button id="button-printpage">
+                            <div class="row">
+                                <i class="fa fa-print" aria-hidden="true" id="icon-mod"></i>
+                                <p id="text">Print Page</p>
+                            </div>
+                        </button>
+
+                    </div>
+                    </div>
+                </div>
+
+                <br/><br/>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12" >
+                  <div class="row">
+                    
+                    <div class="col-5 col-md-4 col-lg-4">
+                      <br/> <br/> <br/>
+                      <div id="img-detaildiv">
+                        <br/> <br/> <br/>
+                        <h3 id="vendor-img-text">VENDOR</h3>
+                        <h3 id="vendor-img-text">LOGO</h3>
+                      </div>
+                    </div>
+
+                    <div class="col-8 col-md-8 col-lg-8">
+                        <div class="row" id="code" style="height: 25px;">
+                            <p class="col-md-4 col-4 col-lg-4" id="text3">Vendor Code</p>
+                            <p class="col-md-1 col-1 col-lg-1">:</p>
+                            <p >{{ this.model.vendorcode }}</p>
+                        </div>
+
+                        <div class="row" id="name" style="height: 25px;">
+                            <p class="col-md-4 col-4 col-lg-4" id="text3">Vendor Name</p>
+                            <p class="col-md-1 col-1 col-lg-1">:</p>
+                            <p  id="text4">{{ this.model.vendorName }}</p>
+                        </div>
+
+                        <div class="row" id="phonenumber" style="height: 25px;">
+                            <p class="col-md-4 col-4 col-lg-4" id="text3">Phone Number</p>
+                            <p class="col-md-1 col-1 col-lg-1">:</p>
+                            <p >{{ this.model.phoneNumber }}</p>
+                        </div>
+
+                        <div class="row" id="mobilenumber" style="height: 25px;">
+                            <p class="col-md-4 col-4 col-lg-4" id="text3">Mobile Number</p>
+                            <p class="col-md-1 col-1 col-lg-1">:</p>
+                            <p >{{ this.model.mobileNumber }}</p>
+                        </div>
+
+                        <div class="row" id="email" style="height: 25px;">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Email</p>
+                          <p class="col-md-1 col-1 col-lg-1">:</p>
+                          <p  >{{ this.model.email }}</p>
+                        </div>
+
+                        <div class="row" id="address" style="height: 25px;">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Address</p>
+                          <p class="col-md-1 col-1 col-lg-1">:</p>
+                          <p>{{ this.model.address }}</p>
+                        </div>
+
+                        <div class="row" id="city" style="height: 25px;">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">City</p>
+                          <p class="col-md-1 col-1 col-lg-1">:</p>
+                          <p>{{ this.model.city }}</p>
+                        </div>
+
+                        <div class="row" id="country" style="height: 25px;">
+                            <p class="col-md-4 col-4 col-lg-4" id="text3">Country</p>
+                            <p class="col-md-1 col-1 col-lg-1">:</p>
+                            <p >{{ this.model.country }}</p>
+                        </div> 
+                        
+                        <div class="row" id="lastedit" style="height: 25px;">
+                                <p class="col-md-4 col-4 col-lg-4" id="text3">Last Edit</p>
+                                <p class="col-md-1 col-1 col-lg-1">:</p>
+                                <p>{{ this.model.lastedit }}</p>
+                        </div>
+
+                        <div class="row" id="addeddate" style="height: 25px;">
+                                <p class="col-md-4 col-4 col-lg-4" id="text3">Added Date</p>
+                                <p class="col-md-1 col-1 col-lg-1">:</p>
+                                <p>{{ this.vendor.addeddate }}</p>
+                        </div>
+                      </div>
+                </div>
+                
+              </div>
+              <br/><br/>
+              <div class="row">
+                <div class="col-5 col-md-5 col-lg-5"></div>
+                <div class="col-2 col-md-2 col-lg-2">
+                  <button id="button-back">
+                    <div class="row" (click)="vendorback()">
+                        <p id="backbutton-text">BACK</p>
+                    </div>
+                  </button>
+                </div>
+                <div class="col-5 col-md-5 col-lg-5"></div>
+              </div>
+        </div>
+    <!-- Vendor left side deatils end-->
+
+    <!--vendor Edit div start -->
+          <div *ngIf="vendoreditdetails" id="vencustab"> 
+            <br/>
+            <div class="row">
+                <div class="col-md-3 col-4 col-lg-7">
+                    <h3>EDIT VENDOR DETAILS</h3>
+                </div>
+                    <div class="col-md-1 col-1 col-lg-1"></div>
+                    <div  class="col-md-6 col-4 col-lg-4">
+                        <div class="row">
+                        <button id="delete-btn">
+                          <div class="row" (click)="vendordelete(this.model.vendorcode)">
+                            <i class="fa fa-trash" aria-hidden="true" id="icon-mod"></i>
+                              &nbsp;
+                              <p>Delete</p>
+                            </div>
+                         </button>
+
+                            &nbsp;&nbsp;
+                            <button id="save-btn">
+                            <div class="row" (click)="vendorupdateDetails()">
+                              <i class="fa fa-floppy-o" aria-hidden="true" style="margin-top: 5px;"></i>
+                              &nbsp; &nbsp;
+                              <p id="text">Save</p>
+                            </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+               <br/><br/><br/><br/>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="row">
+
+                    <div class="col-4 col-sm-4 col-md-4 col-lg-5">
+                      <div class="row" id="code">
+                        <p class="col-md-4 col-4 col-lg-4" id="text3">Vendor Code</p>
+                        <p class="col-md-1 col-1 col-lg-1">:</p>
+                        <div id="nochange-box">{{ this.model.vendorcode }}</div>
+                    </div>
+                    
+                    <div class="row" id="name">
+                        <p class="col-md-4 col-4 col-lg-4" id="text3">Vendor Name</p>
+                        <p class="col-md-1 col-1 col-lg-1" >:</p>
+                        <input type="text" id="editinput-box" value="{{ this.model.vendorName }}"
+                        [(ngModel)]="model.vendorName" 
+                        #vendorName="ngModel" 
+                        placeholder="Enter Vendor name" name="vendorName"/>
+                    </div>
+                    
+                    <div class="row" id="phonenumber">
+                        <p class="col-md-4 col-4 col-lg-4" id="text3">Phone Number</p>
+                        <p class="col-md-1 col-1 col-lg-1" >:</p>
+                        <input type="text" id="editinput-box" value="{{ this.model.phoneNumber }}"
+                        [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" 
+                        placeholder="Enter Vendor phoneNumber" name="phoneNumber" />
+                    </div>
+                        
+                    <div class="row" id="mobilenumber">
+                        <p class="col-md-4 col-4 col-lg-4" id="text3">Mobile Number</p>
+                        <p class="col-md-1 col-1 col-lg-1" >:</p>
+                        <input type="text" id="editinput-box" value="{{ this.model.mobileNumber }}" 
+                        [(ngModel)]="model.mobileNumber" #mobileNumber="ngModel" 
+                        placeholder="Enter Vendor mobileNumber" name="mobileNumber" />
+                    </div>
+
+                    <div class="row" id="email">
+                      <p class="col-md-4 col-4 col-lg-4" id="text3">Email</p>
+                      <p class="col-md-1 col-1 col-lg-1" >:</p>
+                      <input type="text" id="editinput-box" value="{{ this.model.email }}" 
+                      [(ngModel)]="model.email" #email="ngModel" 
+                      placeholder="Enter Vendor email" name="email"/>
+                    </div>
+                </div>
+
+                  <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+                    <div class="row" id="address">
+                      <p class="col-md-4 col-4 col-lg-4" id="text3">Address</p>
+                      <p class="col-md-1 col-1 col-lg-1" >:</p>
+                      <input type="text" id="editinput-box" value="{{ this.model.address }}" 
+                      [(ngModel)]="model.address" #address="ngModel" 
+                      placeholder="Enter Vendor Address" name="address"/>
+                    </div>
+
+                     
+                  <div class="row" id="city">
+                    <p class="col-md-4 col-4 col-lg-4" id="text3">City</p>
+                    <p class="col-md-1 col-1 col-lg-1" >:</p>
+                    <input type="text" id="editinput-box" value="{{ this.model.city }}" 
+                    [(ngModel)]="model.city" #city="ngModel" 
+                    placeholder="Enter Vendor city" name="city"/>
+                  </div>
+
+                    <div class="row" id="country">
+                      <p class="col-md-4 col-4 col-lg-4" id="text3">Country</p>
+                      <p class="col-md-1 col-1 col-lg-1" >:</p>
+                      <select id="editselect-box"  name ="selectedCountry" [(ngModel)]="model.country" required>
+                          <option  *ngFor="let country of countryList" value={{country}} id="black-color">{{country}}</option>     
+                      </select>                 
+                  </div>
+                       
+            <!--     <div class="row" id="lastedit">
+                      <p class="col-md-4 col-4 col-lg-4" id="text3">Last Edit</p>
+                      <p class="col-md-1 col-1 col-lg-1" >:</p>
+                      <p id="text4">{{ this.model.lastedit }}</p>
+                  </div>
+                  
+                  <div class="row" id="addeddate">
+                      <p class="col-md-4 col-4 col-lg-4" id="text3">Added Date</p>
+                      <p class="col-md-1 col-1 col-lg-1" >:</p>
+                      <p id="text4">{{ this.model.addeddate }}</p>
+                  </div>
+                  -->
+                 
+
+                  <div class="row" id="mobilenumber">
+                    <p class="col-md-4 col-4 col-lg-4" id="text3">Last Edit</p>
+                    <p class="col-md-1 col-1 col-lg-1" >:</p>
+                    <div  id="nochange-box">{{ this.model.lastedit }}</div>
+                  </div>
+
+                  <div class="row">
+                    <p class="col-md-4 col-4 col-lg-4" id="text3">Added Date</p>
+                    <p class="col-md-1 col-1 col-lg-1" >:</p>
+                    <div type="text" id="nochange-box" >{{ this.model.addeddate }}</div>
+                  </div>
+                  </div>
+
+                  <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                    <br/>
+                    <div id="imgedit-detaildiv">
+                      <br/><br/> 
+                      <p id="vendor-img-text">VENDOR</p>
+                      <p id="vendor-img-text">LOGO/PIC</p>  
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div style="height: 5px;"></div>
+            <div class="row">
+            <div class="col-5 col-md-5 col-lg-4"></div>
+              <div class="col-2 col-md-2 col-lg-3">
+                <button id="button-back">
+                  <div class="row" (click)="vendorback()">
+                      <p id="backbutton-text">BACK</p>
+                  </div>
+                </button>
+              </div>
+              <div class="col-5 col-md-5 col-lg-5"></div>
+            </div>
+          </div>
+        <!--vendor Edit div End -->
+
+        </div>
+          </mat-tab>
+
+<!------- Customer tab Start------->
+
+
+
+      <mat-tab >
+        <ng-template mat-tab-label>
+          <span (click)="test2()" id="tab-span-color">Customer </span>
+        </ng-template>
+
+
+        <div class="col-12 col-md-12 col-lg-12"> 
+          <!--Customer details start-->
+            <div *ngIf="customerdetailsstart">
+              <div class="row">
+                <div style="height: 20px;width: 100%;"></div>
+                <div class="col-4 col-md-4 col-lg-3"></div>
+                <div class="col-8 col-md-8 col-lg-9">
+                  <div class="row">
+
+                    <div class="row" id="button-printpage">
+                      <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
+                      &nbsp;&nbsp;
+                      <p id="font-size15">Print Page</p>
+                    </div>
+    
+                    &nbsp;&nbsp; &nbsp;&nbsp;
+                    <div class="row" id="button-addnewvendor" (click)="addCustomer()">
+                      <i class="fa fa-plus-circle" aria-hidden="true" id="icon-align"></i>
+                      &nbsp;&nbsp;
+                      <p id="font-size15">Add New Customer</p>
+                    </div>
+
+                    &nbsp;&nbsp;
+                    <mat-form-field style="color: black;">
+                      <input matInput (keyup)="applyFilter2($event.target.value)" placeholder="Client Name/Code">
+                    </mat-form-field>
+
+                  </div>
+                </div>
+              </div>
+
+              <h3>CUSTOMER LIST</h3>
+              <div class="row">
+                <P>Sorted By</P>
+                &nbsp;
+                <p>:</p>
+                <select aria-placeholder="join date" id="selct-joindatebox">
+                  <option>Join Date</option>
+                  <option>Customer Code</option>
+                  <option>Customer Name</option>
+                </select>
+              </div>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            <div class="mat-elevation-z8">
+              <table mat-table #sortCol2="matSort" [dataSource]="dataSource2" matSort matSortActive="ID" matSortDirection="asc">
+                
+                    <ng-container matColumnDef="customercode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer Code</th>
+                        <td mat-cell *matCellDef="let row"> {{row.custcode}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.customerName}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="contactnumber">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Number</th>
+                      <td mat-cell *matCellDef="let row"> {{row.phoneNumber}} </td>
+                    </ng-container>
+
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                    <td mat-cell *matCellDef="let row" > 
+                      <div class="row" style="margin-left: 10px;">
+                        <div id="rowview-div" (click)="customerDetails(row.custcode)">
+                            <i class="fa fa-eye" id="row-icon" aria-hidden="true"></i>    
+                        </div>  
+                        &nbsp;&nbsp; &nbsp;
+                        <div id="rowprint-div" (click)="customerprint()">
+                            <i class="fa fa-print" id="row-icon" aria-hidden="true"></i>    
+                        </div>  
+                        &nbsp;&nbsp; &nbsp;
+                        <div id="rowedit-div2" (click)="customerEditDetails(row.custcode)">
+                            <i class="fa fa-pencil-square-o" id="row-icon" aria-hidden="true"></i>    
+                        </div>  
+                        &nbsp;&nbsp; &nbsp;
+                        <div id="rowdelete-div2" (click)="customerdelete(row.custcode)">
+                            <i class="fa fa-trash-o" id="row-icon" aria-hidden="true"></i>    
+                        </div>   
+                    </div>  
+                    </td>
+                  </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns2;"></tr>
+                    <tr mat-row mat-row [ngClass]="table-row" tabindex="1" 
+                    *matRowDef="let row; columns: displayedColumns2;">
+                    </tr>
+                </table>
+            </div>  
+          </div>
+       <!--Customer details end-->
+
+       <!--customer ADD start-->
+          <div *ngIf="customerdragAndDrop" id="vencustab" >
+            <form name="form"  (ngSubmit)=" saveCustomer()">
+
+              <br/>
+              <div class="row">
+                  <div class="col-md-8 col-8 col-lg-9">
+                      <h3 style="text-align: center;">ADD NEW CUSTOMERS</h3>
+                  </div>
+                  <div  class="col-md-3 col-3 col-lg-3">
+                      
+                    <button id="save-btn">
+                      <div class="row">
+                              <i class="fa fa-floppy-o" aria-hidden="true" style="margin-left: 15px;font-size: 20px;"></i>
+                              &nbsp;&nbsp;&nbsp;
+                              <p>Save</p>
+                        </div>
+                    </button>
+                  
+
+                  </div>
+              </div>
+
+              <br/><br/><br/>
+
+              <div class="example-box" id="scrolling">
+
+                    <div class="row">
+                      <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+                      <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                        <div class="row" id="address">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Customer Name</p>
+                          <p class="col-md-1 col-1 col-lg-1" >:</p>
+                          <input type="text" id="editinput-box2" value="" [(ngModel)]="model.customerName" 
+                          #customerName="ngModel" 
+                          placeholder="Enter Customer name" name="customerName"/>
+                      </div>
+                      <div class="row" id="address">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Phone Number</p>
+                          <p class="col-md-1 col-1 col-lg-1" >:</p>
+                          <input type="text" id="editinput-box2" [(ngModel)]="model.phoneNumber" 
+                          #phoneNumber="ngModel" 
+                          placeholder="Enter Phone Number" name="phoneNumber" />
+                      </div>
+                      <div class="row" id="address">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Address</p>
+                          <p class="col-md-1 col-1 col-lg-1" >:</p>
+                          <input type="text" id="editinput-box2" [(ngModel)]="model.address" 
+                          #address="ngModel" 
+                          placeholder="Enter Address" name="address"/>
+                      </div>
+                      <div class="row" id="address">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">City</p>
+                          <p class="col-md-1 col-1 col-lg-1" >:</p>
+                          <input type="text" id="editinput-box2" [(ngModel)]="model.city" 
+                          #city="ngModel" 
+                          placeholder="Enter City" name="city" />
+                      </div>
+                      <div class="row" id="address">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Email Address</p>
+                          <p class="col-md-1 col-1 col-lg-1" >:</p>
+                          <input type="text" id="editinput-box2" [(ngModel)]="model.email" 
+                          #email="ngModel" 
+                          placeholder="Enter Email" name="email" />
+                      </div>
+                      <div class="row" id="address">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Mobile Number</p>
+                          <p class="col-md-1 col-1 col-lg-1" >:</p>
+                          <input type="text" id="editinput-box2" [(ngModel)]="model.mobileNumber" 
+                          #mobileNumber="ngModel" 
+                          placeholder="Enter Moblie Number" name="mobileNumber" />
+                      </div>
+                      <div class="row" id="address">
+                          <p class="col-md-4 col-4 col-lg-4" id="text3">Country</p>
+                          <p class="col-md-1 col-1 col-lg-1" >:</p>
+                          <select id="editselect-box2" name ="selectedCountry" [(ngModel)]="model.country" required >
+                              <option  *ngFor="let country of countryList" value={{country}} id="black-color">{{country}}</option>     
+                          </select>  
+                      </div>
+                    </div>
+
+                    <div class="col-4 col-md-4 col-lg-4">
+                      <br/><br/><br/><br/>
+                      <div id="img-detaildiv">
+                        <br/> <br/> <br/>
+                        <h3 id="vendor-img-text">CUSTOMER</h3>
+                        <h3 id="vendor-img-text">LOGO/PIC</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+          </form>
+
+          <br/>
+              <div class="row">
+                <div class="col-5 col-md-5 col-lg-5"></div>
+                <div class="col-2 col-md-2 col-lg-2">
+                  <button id="button-back">
+                    <div class="row" (click)="customerback()">
+                        <p id="backbutton-text">BACK</p>
+                    </div>
+                  </button>
+                </div>
+                <div class="col-5 col-md-5 col-lg-5"></div>
+              </div>
+          </div>
+    <!-- customer ADD end-->
+
+
+    <!-- Customer deatils View start-->
+    <div *ngIf="customerdetails" id="vencustab">
+      <br/>
+      <div class="row">
+          <div class="col-md-3 col-5 col-lg-7">
+              <h3>CUSTOMER DETAILS VIEW</h3>
+          </div>
+              <div  class="col-md-5 col-5 col-lg-5">
+              <div class="row">
+                  <button id="button-edit">
+                      <div class="row" (click)="customerEditDetails()">
+                          <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-top: 5px;"></i>
+                          &nbsp;
+                          <p>Edit</p>
+                      </div>
+                  </button>
+
+                  &nbsp; &nbsp; &nbsp;
+                  <button id="button-printpage">
+                      <div class="row">
+                          <i class="fa fa-print" aria-hidden="true" id="icon-mod"></i>
+                          <p id="text">Print Page</p>
+                      </div>
+                  </button>
+
+              </div>
+              </div>
+          </div>
+
+          <br/><br/>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12" >
+            <div class="row">
+              
+              <div class="col-5 col-md-4 col-lg-4">
+                <br/> <br/> <br/>
+                <div id="img-detaildiv">
+                  <br/> <br/> <br/>
+                  <h3 id="vendor-img-text">Customer</h3>
+                  <h3 id="vendor-img-text">LOGO</h3>
+                </div>
+              </div>
+
+              <div class="col-8 col-md-8 col-lg-8">
+                <div class="row" style="height: 25px;">
+                  <p class="col-md-4 col-4 col-lg-4" id="text3">Customer Code</p>
+                  <p class="col-md-1 col-1 col-lg-1">:</p>
+                  <p id="text4">{{ this.model.custcode }}</p>
+              </div>
+              
+              <div class="row" style="height: 25px;">
+                  <p class="col-md-4 col-4 col-lg-4" id="text3">Customer Name</p>
+                  <p class="col-md-1 col-1 col-lg-1">:</p>
+                  <p id="text4">{{ this.model.customerName }}</p>
+              </div>
+              
+              <div class="row" style="height: 25px;">
+                  <p class="col-md-4 col-4 col-lg-4" id="text3">Phone Number</p>
+                  <p class="col-md-1 col-1 col-lg-1">:</p>
+                  <p id="text4">{{ this.model.phoneNumber }}</p>
+              </div>
+              
+              <div class="row" style="height: 25px;">
+                  <p class="col-md-4 col-4 col-lg-4" id="text3">Mobile Number</p>
+                  <p class="col-md-1 col-1 col-lg-1">:</p>
+                  <p id="text4">{{ this.model.mobileNumber }}</p>
+              </div>
+
+              <div class="row" style="height: 25px;">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Email</p>
+                <p class="col-md-1 col-1 col-lg-1">:</p>
+                <p id="text4">{{ this.model.email }}</p>
+              </div>
+
+              <div class="row" style="height: 25px;">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Address</p>
+                <p class="col-md-1 col-1 col-lg-1">:</p>
+                <p id="text4">{{ this.model.address }}</p>
+              </div>  
+
+              <div class="row" style="height: 25px;">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">City</p>
+                <p class="col-md-1 col-1 col-lg-1">:</p>
+                <p id="text4">{{ this.model.city }}</p>
+              </div>
+              
+              <div class="row" style="height: 25px;">
+                  <p class="col-md-4 col-4 col-lg-4" id="text3">Country</p>
+                  <p class="col-md-1 col-1 col-lg-1">:</p>
+                  <p id="text4">{{ this.model.country }}</p>
+              </div>
+              
+              <div class="row" style="height: 25px;">
+                      <p class="col-md-4 col-4 col-lg-4" id="text3">Last Edit</p>
+                      <p class="col-md-1 col-1 col-lg-1">:</p>
+                      <p id="text4">{{ this.model.lastedit }}</p>
+              </div>
+              
+              <div class="row" style="height: 25px;">
+                  <p class="col-md-4 col-4 col-lg-4" id="text3">Added Date</p>
+                  <p class="col-md-1 col-1 col-lg-1">:</p>
+                  <p id="text4">{{ this.model.addeddate }}</p>
+              </div>  
+            </div>
+          </div>
+          
+        </div>
+        <br/><br/>
+        <div class="row">
+          <div class="col-5 col-md-5 col-lg-5"></div>
+          <div class="col-2 col-md-2 col-lg-2">
+            <button id="button-back">
+              <div class="row" (click)="customerback()">
+                  <p id="backbutton-text">BACK</p>
+              </div>
+            </button>
+          </div>
+          <div class="col-5 col-md-5 col-lg-5"></div>
+        </div>
+  </div>
+<!-- Customer details view end-->
+
+  <!--Customer Edit div start -->
+  <div *ngIf="customereditdetails" id="vencustab"> 
+    <br/>
+    <div class="row">
+        <div class="col-md-1 col-1 col-lg-1"></div>
+        <div class="col-md-3 col-4 col-lg-6">
+            <h3>EDIT CUSTOMER DETAILS</h3>
+        </div>
+            <div  class="col-md-6 col-4 col-lg-5">
+                <div class="row">
+                <button id="delete-btn">
+                    <div class="row" (click)="customerdelete(this.model.custcode)">
+                      <i class="fa fa-trash" aria-hidden="true" id="icon-mod"></i>
+                        &nbsp;
+                        <p>Delete</p>
+                      </div>
+                    </button>
+
+                    &nbsp;&nbsp;
+                    <button id="save-btn">
+                    <div class="row" (click)="customerupdateDetails()">
+                      <i class="fa fa-floppy-o" aria-hidden="true" style="margin-top: 5px;"></i>
+                      &nbsp; &nbsp;
+                      <p id="text">Save</p>
+                    </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+       <br/><br/><br/><br/>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="row">
+            <div class="col-4 col-sm-4 col-md-4 col-lg-5">
+              <div class="row" id="code">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Customer Code</p>
+                <p class="col-md-1 col-1 col-lg-1">:</p>
+                <p id="nochange-box">{{ this.model.custcode }}</p>
+            </div>
+            
+            <div class="row" id="name">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">CustomerName</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+                <input type="text" id="editinput-box" value="{{ this.model.customerName }}"
+                [(ngModel)]="model.customerName" #customerName="ngModel" 
+                placeholder="Enter customerName" name="customerName" />
+            </div>
+                
+            <div class="row" id="phonenumber">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Phone Number</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+                <input type="text" id="editinput-box" value="{{ this.model.phoneNumber }}" 
+                [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" 
+                placeholder="Enter phoneNumber" name="phoneNumber"/>
+            </div>
+                
+            <div class="row" id="mobilenumber">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Mobile Number</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+                <input type="text" id="editinput-box" value="{{ this.model.mobileNumber }}" 
+                [(ngModel)]="model.mobileNumber" #phoneNumber="ngModel" 
+                placeholder="Enter mobileNumber" name="mobileNumber"/>
+            </div>
+
+            <div class="row" id="email">
+              <p class="col-md-4 col-4 col-lg-4" id="text3">Email</p>
+              <p class="col-md-1 col-1 col-lg-1" >:</p>
+              <input type="text" id="editinput-box" value="{{ this.model.email }}" 
+              [(ngModel)]="model.email" #email="ngModel" 
+              placeholder="Enter email" name="email"/>
+            </div>
+          </div>
+
+            <div class="col-4 col-sm-4 col-md-4 col-lg-4">
+              <div class="row" id="address">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Address</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+                <input type="text" id="editinput-box" value="{{ this.model.address }}" 
+                [(ngModel)]="model.address" #address="ngModel" 
+                placeholder="Enter address" name="address"/>
+              </div>
+
+              <div class="row" id="city">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">City</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+                <input type="text" id="editinput-box" value="{{ this.model.city }}" 
+                [(ngModel)]="model.city" #city="ngModel" 
+                placeholder="Enter city" name="city"/>
+              </div>
+
+              <div class="row" id="country">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Country</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+
+            <select id="editselect-box"   name ="selectedCountry" [(ngModel)]="model.country" required>
+                    <option  *ngFor="let country of countryList" value={{country}} id="black-color">{{country}}</option>     
+                </select>
+            </div>
+            
+           <!-- <div class="row" id="lastedit">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Last Edit</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+                <p id="text4">{{ this.model.lastedit }}</p>
+            </div>
+            
+            <div class="row" id="addeddate">
+                <p class="col-md-4 col-4 col-lg-4" id="text3">Added Date</p>
+                <p class="col-md-1 col-1 col-lg-1" >:</p>
+                <p id="text4">{{ this.model.addeddate }}</p>
+            </div> -->
+        
+            <div class="row" id="mobilenumber">
+              <p class="col-md-4 col-4 col-lg-4" id="text3">LastEdit</p>
+              <p class="col-md-1 col-1 col-lg-1" >:</p>
+              <div  id="nochange-box">{{ this.model.lastedit }}</div>
+            </div>
+
+            <div class="row">
+              <p class="col-md-4 col-4 col-lg-4" id="text3">Added Date</p>
+              <p class="col-md-1 col-1 col-lg-1" >:</p>
+              <div type="text" id="nochange-box" >{{ this.model.addeddate }}</div>
+            </div>
+          </div>
+
+            <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+              <br/>
+              <div id="imgedit-detaildiv">
+                <br/> 
+                <h2 id="vendor-img-text">CUSTOMER</h2>
+                <h2 id="vendor-img-text">LOGO/PIC</h2>  
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <div style="height: 5px;"></div>
+        <div class="row">
+        <div class="col-5 col-md-5 col-lg-4"></div>
+          <div class="col-2 col-md-2 col-lg-3">
+           <button id="button-back">
+              <div class="row" (click)="customerback()">
+                  <p id="backbutton-text">BACK</p>
+              </div>
+           </button>
+          </div>
+         <div class="col-5 col-md-5 col-lg-5"></div>
+        </div>
+  </div>
+<!--Customer Edit div End -->
+
+      </div>
+    </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>

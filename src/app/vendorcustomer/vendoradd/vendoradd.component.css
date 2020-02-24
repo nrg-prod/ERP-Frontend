@@ -1,0 +1,328 @@
+* {
+  font-family: 'Lato',Georgia,Arial,sans-serif;
+  font-size:13px;
+  color:white;
+}
+h3{
+  font-size: 17px;
+  font-weight: bold;
+}
+:host > .container {
+  max-width: 1264px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  background: none;
+}
+:host /deep/ .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+  padding-bottom: 1.25em;
+  background: #58666E;
+  border-radius: 7px;
+  margin-top: -3px;
+  height: 35px;
+  width: 100%;
+}
+:host /deep/ .mat-form-field-appearance-legacy .mat-form-field-underline{
+  height: 0px;
+  bottom: unset;
+}
+:host /deep/ .mat-form-field-appearance-legacy .mat-form-field-ripple{
+  height: 0px;
+  top: 0px;
+}
+:host /deep/ .mat-tab-group {
+  flex-direction: row;
+}
+:host /deep/ .mat-tab-header {
+  border-bottom: none;
+  border: none;
+}
+:host /deep/ .mat-tab-header-pagination {
+  display: none !important;
+}
+:host /deep/ .mat-tab-labels {
+  flex-direction: column;
+  background: #2D4452;
+}
+:host /deep/ .mat-tab-body-wrapper {
+  flex: 1 1 auto;
+  height: 460px;
+  background: #243641;
+}
+:host /deep/ .mat-tab-label{
+  height: 100px;
+  background: #2D4452;
+}
+:host /deep/ .mat-tab-label-active {
+  background-color: #243641 ;
+  border-bottom: 1px solid white;
+}
+:host /deep/ .mat-tab-group.mat-primary .mat-ink-bar{
+  background: none;
+}
+.container {
+  position: relative;
+  width: 100%;
+  flex: 1 0 auto;
+  margin: 0 auto;
+  text-align: left;
+}
+#content {
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding: 15px;
+  width: 1264px;
+  /*background-color:#243641; */
+}
+#content {
+  max-width: 1100px;
+  width: 100%;
+  /*background-color:#243641; */
+  padding: 24px;
+  box-sizing: border-box;
+  height: 400px;
+}
+#content::before, #main-content::before, #content::after, #main-content::after {
+  content: "";
+  display: table;
+}
+#content::after, #main-content::after {
+  clear: both;
+}
+.mat-tab{
+  height: 70px;
+  background: white;
+}
+:host /deep/ td{
+  vertical-align: middle;
+}
+:host /deep/ .mat-select{
+  margin-left: 14px;
+}
+:host /deep/ .mat-select-value{
+  width: 50%;
+  color: white;
+}
+
+
+
+#button-edit{
+  height: 25px;
+  width: 65px;
+  border: 1px solid;
+  cursor: pointer;
+  background: center;
+  outline: none;
+}
+#button-printpage{
+  height: 25px;
+  width: 100px;
+  border: 1px solid;
+  cursor: pointer;
+  background: center;
+  outline: none;
+}
+#button-addnewvendor{
+  height: 25px;
+  width: 150px;
+  border: 1px solid;
+  cursor: pointer;
+}
+.row{
+  margin: 0px;
+}
+table.mat-table{
+  width: 100%;
+}
+table th,td{
+  border: 2px solid #121b21;
+}
+tr:nth-child(even){
+  background-color: #1A2932;
+  height: 65px;
+  text-align: center;
+}
+tr:nth-child(odd){
+  background-color: #1F303B;
+  height: 65px;
+  text-align: center;
+}
+tr.mat-header-row{
+  background: #1B2931;
+  height: 50px;
+  
+}
+:host /deep/ .mat-sort-header-container{
+  margin-left: 35px;
+}
+:host /deep/ td.mat-cell:first-of-type{
+  padding-left: 0px;
+}
+/*:host /deep/ td.mat-cell{
+  border-bottom: none; 
+}*/
+:host /deep/ .mat-paginator{
+  background-color: transparent;
+}
+:host /deep/ .mat-select-arrow{
+  color: white;
+}
+:host /deep/ .mat-select-value-text{
+  color: white;
+}
+
+
+#rowview-div{
+  height: 30px;
+  width: 30px;
+  background: #6BD052;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+}
+#rowprint-div{
+  height: 30px;
+  width: 30px;
+  background: #FE6601;
+  border-radius: 30px;
+  cursor: pointer;
+}
+#rowedit-div2{
+  height: 30px;
+  width: 30px;
+  background: #267CB4;
+  border-radius: 30px;
+  cursor: pointer;
+}
+#rowdelete-div2{
+  height: 30px;
+  width: 30px;
+  background: #EF6956; 
+  border-radius: 30px;
+  cursor: pointer;
+}
+#row-icon{
+  font-size: 20px;
+  margin: 5px;
+}
+#icon-align{
+  margin: 5px;
+}
+#save-btn{
+  width: 90px;
+  height: 25px;
+  background: #51AF57;
+  border: none;
+  outline: none;
+}
+#delete-btn{
+  width: 90px;
+  height: 25px;
+  background: #C1272D;
+  border: none;
+  outline: none;
+}
+#editinput-box{
+  height: 30px;
+  width: 49%;
+  color: black;
+  background: #999999;
+  border: none;
+  box-shadow: none;
+}
+#editinput-box2{
+  height: 30px;
+  width: 49%;
+  color: black;
+  background: white;
+  border: none;
+  box-shadow: none;
+}
+#editselect-box{
+  height: 35px;
+  border-radius: 0px;
+  width: 49%;
+  color: black;
+  font-size: 12px;
+  background: #999999;
+  border: none;
+  box-shadow: none;
+}
+#editselect-box2{
+  height: 35px;
+  border-radius: 0px;
+  width: 49%;
+  color: black;
+  font-size: 12px;
+  background: white;
+  border: none;
+  box-shadow: none;
+}
+#img-detaildiv{
+  width: 100%;
+  height: 170px;
+  background: white;
+  color: black;
+}
+#imgedit-detaildiv{
+  width: 110%;
+  height: 130px;
+  background: white;
+  color: black;
+}
+#vendor-img-text{
+  color: black;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+#icon-mod{
+  margin: 5px;
+}
+#button-back{
+  height: 22px;
+  width: 90px;
+  border: 1px solid;
+  cursor: pointer;
+  background: center;
+  margin: auto;
+  outline: none;
+}
+#nochange-box{
+  height: 30px;
+  width: 49%;
+  color: black;
+  background: #4D4D4D;
+}
+#black-color{
+  color: black;
+}
+#selct-joindatebox{
+  background: #20303A;
+  width: 15%;
+  height: 30px;
+  box-shadow: none;
+  border: 0px;
+  margin-left: 7px;
+}
+#tab-span-color{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+:host /deep/ mat-header-cell, mat-cell {
+  justify-content: center;
+  flex: 0 0 200px;
+  border-bottom-width: 1px;
+
+}
+#backbutton-text{
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -3px;
+}
+#text3{
+  font-size: 12px;
+}

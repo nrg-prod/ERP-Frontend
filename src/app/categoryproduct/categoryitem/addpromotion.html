@@ -1,0 +1,141 @@
+<!--Dialouge box start-->
+<div id="box-dialouge">
+    <br/>
+    <form name="addpromotion" (ngSubmit)="savePromotion()"> 
+    <h2 style="text-align: center;">Add Promotion Product</h2>
+    <div class="row">
+        <div class="col-2 col-md-2 col-sm-2 col-lg-2"></div>
+        <div class="col-10 col-md-10 col-sm-10 col-lg-10">
+            <div class="row">
+                <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                  <p>Category</p>
+                </div>
+
+                  <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                  <p>:</p>
+                  </div>
+                
+                <div class="col-7 col-md-7 col-sm-7 col-lg-7">
+                  <select id="selectbox-category" name ="selectcategory" 
+                  [(ngModel)]="model.categorycode" 
+                  #categorycode="ngModel" required>
+                      <option>---- Select ----</option>
+                      <option *ngFor="let itemcategory of allcategorylist" value="{{itemcategory.name}}-{{itemcategory.categorycode}}"> {{itemcategory.name}}-{{itemcategory.categorycode}} </option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2 col-md-2 col-sm-2 col-lg-2">
+                  <p>Product</p>
+                </div>
+                <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                  <p>:</p>
+                </div>
+                <div class="col-7 col-md-7 col-sm-7 col-lg-7">
+                <ng2-completer class="autosearch1" 
+                placeholder="&#xf002; Search here"  
+                  [(ngModel)]="model.productname" name="productname"
+                   #productname="ngModel" [datasource]="dataService" 
+                  [minSearchLength]="0" ></ng2-completer>
+                </div>
+            </div>
+        </div>
+
+            <div class="col-4 col-md-4 col-sm-4 col-lg-4"></div>
+            <div class="col-8 col-md-8 col-sm-8 col-lg-8">
+            <div class="row" style="margin-left: 0px;">
+              <input type="radio"  value="discount" [(ngModel)]="model.discountType" #discountType="ngModel"
+              name="radiopromo" style="margin: 7px;"/>
+                  <p>Discount</p>
+                  &nbsp;
+                  <input type="text" placeholder="%" id="dicountinput-box"/>
+                  &nbsp;&nbsp;&nbsp;
+                  <p>Qty</p>
+                  &nbsp;
+                  <input type="text" id="qtyinput-box"
+                  name ="qty" 
+                  [(ngModel)]="model.qty" 
+                  #qty="ngModel"/>
+            </div>
+
+            <div class="row" style="margin-left: 0px;">
+              <input type="radio" value="freegift" [(ngModel)]="model.discountType" #discountType="ngModel"
+              name="radiopromo" style="margin: 7px;"/>
+                  <p>Free Gift</p>
+                  &nbsp;
+                  <input type="text" id="freegift-box" placeholder="Product Free Gift" 
+                  name ="freegift" 
+                  [(ngModel)]="model.freegift" 
+                  #freegift="ngModel"/>
+            </div>
+
+            <div class="row" style="margin-left: 0px;">
+                <label class="checkbox-inline">
+                  <input type="radio" value="others" [(ngModel)]="model.discountType" #discountType="ngModel"
+                  name="radiopromo" style="margin: 7px;"/>
+                </label>
+                  <p>others </p>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="text" id="others-box" [(ngModel)]="model.others" #discount="ngModel" placeholder="Custom Promotion" 
+                  name ="others" 
+                  [(ngModel)]="model.others" 
+                  #others="ngModel"/>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+            <div class="row">
+                <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                    <p style="margin-left: 5px;">Promotion Period</p>
+                </div>
+                <div class="col-1 col-md-1 col-sm-1 col-lg-1">
+                    <p style="margin-left: -10px;">:</p>
+                </div>
+                <div class="col-7 col-md-7 col-sm-7 col-lg-7" style="margin-left: -21px;">
+                    <div class="row">
+                     <!--   <input type="text" placeholder="xx-xx-xxxx" id="promotion-periodbox"
+                        name ="promotionperiod" 
+                        [(ngModel)]="model.promotionperiod" 
+                        #v="ngModel"/> -->
+
+                        <input type="date" class="form-control"
+                         id="promotion-periodbox"
+                        [(ngModel)]="model.fromdate_promotionperiod" name="fromdate_promotionperiod"
+                        #fromdate_promotionperiod="ngModel" />
+
+                        &nbsp;&nbsp;
+                        <hr class="hrline">
+                        &nbsp;&nbsp;
+                    <!--    <input type="text" placeholder="xx-xx-xxxx" id="promotion-periodbox2"
+                        name ="promotionperiod" 
+                        [(ngModel)]="model.promotionperiod" 
+                        #promotionperiod="ngModel"/> -->
+
+                        <input type="date" class="form-control"
+                         id="promotion-periodbox2"
+                        [(ngModel)]="model.todate_promotionperiod" name="todate_promotionperiod"
+                        #todate_promotionperiod="ngModel" />
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-2 col-md-2 col-sm-2 col-lg-2"></div>
+                <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                    <button id="save-btn" type="submit">Save</button>
+                </div>
+                <div class="col-4 col-md-4 col-sm-4 col-lg-4">
+                    <button id="cancel-btn" (click)="close($event); false">Cancel</button>
+                </div>
+                <div class="col-2 col-md-2 col-sm-2 col-lg-2"></div>
+             </div>
+        </div>    
+</div>
+</form>  
+</div>
+<!--Dialouge box end-->

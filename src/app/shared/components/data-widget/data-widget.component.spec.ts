@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllreportComponent } from './allreport.component';
+import { DataWidgetComponent } from './data-widget.component';
 
-describe('AllreportComponent', () => {
-  let component: AllreportComponent;
-  let fixture: ComponentFixture<AllreportComponent>;
+describe('DataWidgetComponent', () => {
+  let component: DataWidgetComponent;
+  let fixture: ComponentFixture<DataWidgetComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllreportComponent ]
+      declarations: [ DataWidgetComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AllreportComponent);
+    fixture = TestBed.createComponent(DataWidgetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

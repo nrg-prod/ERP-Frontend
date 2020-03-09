@@ -8,7 +8,6 @@ import { LoginComponent } from "src/app/login/login.component";
 import { EmployeeModule } from "src/app/modules/employee/employee.module";
 import { CategoryproductModule } from "src/app/categoryproduct/categoryproduct.module";
 import { FinanceModule } from "src/app/finance/finance.module";
-import { ReportModule } from "src/app/report/report.module";
 import { UsermgtModule } from "src/app/usermgt/usermgt.module";
 import { PlaceholderComponent } from "../../core/components/placeholder/placeholder.component";
 import { VendorAndCustomerModule } from "../vendor-and-customer/vendor-and-customer.module";
@@ -73,11 +72,7 @@ const routes: Routes = [
         loadChildren: () =>
           import("./../../modules/stock/stock.module").then(m => StockModule)
       },
-      {
-        path: "report",
-        loadChildren: () =>
-          import("./../../report/report.module").then(m => ReportModule)
-      },
+     
       {
         path: "user-management",
         loadChildren: () =>

@@ -19,9 +19,9 @@ import {
   UserService
 } from "./_services/index";
 
-import { DashboardWidgetComponent } from "./shared/components/dashboard-widget/dashboard-widget.component";
-import { DataWidgetComponent } from "./shared/components/data-widget/data-widget.component";
 import { NavigationComponent } from "./navigation/navigation.component";
+import { DashboardWidgetComponent } from './shared/components/dashboard-widget/dashboard-widget.component';
+import { DataWidgetComponent } from './shared/components/data-widget/data-widget.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { NavigationComponent } from "./navigation/navigation.component";
     NavigationComponent,
     DashboardWidgetComponent,
     DataWidgetComponent
+
   ],
 
   imports: [

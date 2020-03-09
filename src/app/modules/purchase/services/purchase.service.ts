@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { HttpRequest, HttpEvent} from '@angular/common/http';
 import { Purchase } from 'src/app/_models';
-import { environment } from "src/environments/environment";
+import { environment } from "src/environments/environment.prod";
 
 import { API_ENDPOINTS } from "./../purchase.config";
 

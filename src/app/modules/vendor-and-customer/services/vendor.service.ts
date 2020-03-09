@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Vendor } from 'src/app/_models';
-import { environment } from "src/environments/environment";
+import { environment } from "src/environments/environment.prod";
 import { API_ENDPOINTS } from "./../vendor.config";
 @Injectable()
 export class VendorService {    

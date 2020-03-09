@@ -1,0 +1,139 @@
+<form name="formReg">
+  <div class="tab-content-bg p-3">
+    <div class="row">
+      <div class="col">
+        <ng-container [ngSwitch]="true">
+          <ng-container *ngSwitchCase="isEditMode">
+            Edit Employee Detail
+          </ng-container>
+          <ng-container *ngSwitchCase="isAddNew">
+            Add Employee
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            Employee Detail
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="col px-3">
+        <span class="row m-0">
+          <ng-container [ngSwitch]="true">
+            <ng-container *ngSwitchCase="isEditMode"
+              ><span class="col px-2">
+                <button
+                  class="col btn-red transparent-border"
+                  (click)="deleteEmployee()"
+                >
+                  <i class="fas fa-trash"></i>
+                  Delete
+                </button>
+              </span>
+              <span class="col px-2">
+                <button class="col btn-green transparent-border">
+                  <i class="fas fa-save"></i>
+                  Save
+                </button>
+              </span>
+            </ng-container>
+            <ng-container *ngSwitchCase="isAddNew"
+              ><span class="col px-2">
+                <button
+                  class="col btn-red transparent-border"
+                  (click)="cancelAddNew()"
+                >
+                  <i class="fas fa-trash"></i>
+                  Cancel
+                </button>
+              </span>
+              <span class="col px-2">
+                <button
+                  class="col btn-green transparent-border"
+                  (click)="saveEmployee()"
+                >
+                  <i class="fas fa-save"></i>
+                  Save
+                </button>
+              </span>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <span class="col px-2">
+                <button class="col" (click)="toggleEditMode()">
+                  <i class="fas fa-edit"></i>
+                  Edit
+                </button>
+              </span>
+              <span class="col px-2">
+                <button class="col">
+                  <i class="fas fa-print"></i>
+                  Print Page
+                </button>
+              </span>
+            </ng-container>
+          </ng-container>
+        </span>
+      </div>
+    </div>
+    <div class="three-column max-height-adjust mt-3">
+      <div *ngFor="let fieldLabel of fieldLabels" class="mb-3 pr-4">
+        <div
+          *ngIf="
+            !(
+              isAddNew &&
+              (fieldLabel === 'code' ||
+                fieldLabel === 'doj' ||
+                fieldLabel === 'absentDedution')
+            )
+          "
+          class="mb-1"
+        >
+          {{ ts.translate(fieldLabel) }}
+        </div>
+
+        <!-- Validation for photo and input fields -->
+
+        <ng-container [ngSwitch]="true">
+          <img
+            *ngSwitchCase="fieldLabel === 'photo'"
+            [src]="employee[fieldLabel]"
+            alt="Employee Photo"
+            class="employee-photo"
+            onerror="this.src = 'assets/images/bk1.jpg'"
+          />
+
+          <textarea
+            *ngSwitchCase="fieldLabel === 'address'"
+            [placeholder]="ts.translate(fieldLabel)"
+            [disabled]="!isAddNew && !isEditMode"
+            class="p-1"
+            [value]="employee[fieldLabel]"
+            [(ngModel)]="this.model.address"
+          >
+          </textarea>
+
+          <ng-container *ngSwitchDefault>
+            <input
+              *ngIf="
+                !(
+                  isAddNew &&
+                  (fieldLabel === 'code' ||
+                    fieldLabel === 'doj' ||
+                    fieldLabel === 'absentDedution')
+                )
+              "
+              type="text"
+              [placeholder]="ts.translate(fieldLabel)"
+              [value]="employee[fieldLabel]"
+              [disabled]="
+                !isAddNew &&
+                (!isEditMode ||
+                  fieldLabel === 'code' ||
+                  fieldLabel === 'doj' ||
+                  fieldLabel === 'absentDedution')
+              "
+              class="p-1"
+            />
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</form>

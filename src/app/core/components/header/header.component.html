@@ -1,0 +1,84 @@
+<header class="w-100 position-fixed d-flex align-items-center p-4">
+  <h1 hidden>ERP</h1>
+  <div class="search-box">
+    <i class="fas fa-search search-icon" aria-hidden="true"></i>
+    <input
+      class="search-text-box"
+      type="search"
+      [(ngModel)]="searchText"
+      autocomplete="on"
+      placeholder="Search here"
+    />
+  </div>
+  <a [routerLink]="['/']">
+    <img
+      src="assets/images/nrg-logo.png"
+      class="img-fluid logo position-absolute"
+      alt="app logo"
+    />
+  </a>
+  <div class="ml-auto d-flex align-items-center">
+    <app-user-avatar></app-user-avatar>
+    <i class="fas fa-cog ml-2"></i>
+    <a [routerLink]="['/login']"> <i class="fas fa-power-off ml-2"></i></a>
+  </div>
+</header>
+
+<!-- <div class=" col-1 col-lg-1"></div>
+
+<div class="col-md-2 col-2 col-lg-1">
+  <img
+    src="./assets/images/nrg_logo.png"
+    id="nrg-logo-paddding"
+    [routerLink]="['/landingpage']"
+  />
+</div>
+<div class="col-md-5 col-3 col-lg-3">
+  <input
+    type="text"
+    [(ngModel)]="searchText"
+    autocomplete="on"
+    placeholder="&#xf002; search here"
+    class="searchicon"
+  />
+</div>
+<div class="col-md-1 col-1 col-lg-3"></div>
+
+<div class="col-lg-1"></div>
+
+<div class="col-2 col-lg-2">
+  <div class="dropdown">
+    <div class="dropbtn icons btn-right showLeft" (click)="showDropdown()">
+      <div id="user-img">
+        <img src="./assets/images/user.png" />
+      </div>
+    </div>
+    <div id="myDropdown" class="dropdown-content">
+      <div id="user-imag">
+        <img src="./assets/images/user.png" style="margin-left: 105px;" />
+      </div>
+      <br />
+      <div id="div-details">
+        <h2 id="black-color">Hendry</h2>
+        <label style="margin-left: -25px;">General Manager</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-5 col-4 col-lg-2">
+  <div class="row">
+    <div id="user-img1">
+      <i class="fa fa-cog" aria-hidden="true" id="icon-color"></i>
+    </div>
+    <div id="user-img2">
+      <i
+        [routerLink]="['/login']"
+        class="fa fa-power-off"
+        aria-hidden="true"
+        id="icon-color"
+      >
+      </i>
+    </div>
+  </div>
+</div> -->

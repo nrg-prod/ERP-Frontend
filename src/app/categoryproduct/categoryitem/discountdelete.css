@@ -1,17 +1,12 @@
-*{
-    font-family: 'Lato',Georgia,Arial,sans-serif;
-    font-size:medium;
-    color:white;
+.discountdelete .mat-dialog-container {
+  background-color: #5ba95b;
+  width: 400px;
+  height: 70px;
+  padding: 17px;
+  overflow: hidden;
+  margin-top: -305px;
 }
-::ng-deep .discountdelete .mat-dialog-container {
-    background-color: #5ba95b;
-    width: 400px ;
-    height: 70px ;
-    padding: 17px;
-    overflow: hidden;
-    margin-top: -305px;
-}
-h2{
-    text-align: center;
-    font-size: 25px;
+h2 {
+  text-align: center;
+  font-size: 25px;
 }

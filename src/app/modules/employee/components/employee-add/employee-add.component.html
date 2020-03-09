@@ -1,0 +1,120 @@
+
+    <form  name="employeeForm"
+    (submit)="employeeForm.form.valid && saveEmployee()"
+    #employeeForm="ngForm"
+    novalidate
+    class="text-center border border-light p-4">
+               
+      <br/>
+      <div class="form-row mb-4">
+          <div class="col">
+            <label id="labeltext">Employee Name *</label>
+            <input type="text" id="defaultRegisterFormLastName" 
+            class="form-control" placeholder="Name"
+             [(ngModel)]="this.model.name" 
+             #name="ngModel" name="name"             
+             required>            
+          </div>
+          
+
+          <div class="col">
+            <label id="labeltext">Employee Rank </label>
+            <input type="text" id="defaultRegisterFormLastName" 
+            class="form-control" placeholder="Employee Rank" 
+            [(ngModel)]="this.model.rank" #rank="ngModel" name="rank" >
+          </div>
+          <div class="col">
+            <label id="labeltext">PhoneNumber</label>
+            <input type="text" id="defaultRegisterFormLastName" 
+            class="form-control" placeholder="Phone number" 
+            [(ngModel)]="this.model.phonenumber" #phonenumber="ngModel" 
+            name="phonenumber" >
+          </div>
+      </div>
+
+      <div class="form-row mb-4">
+          <div class="col">
+            <label id="labeltext"> Address</label> 
+            <input type="text" id="defaultRegisterFormLastName" class="form-control" 
+            placeholder="Address"
+             [(ngModel)]="this.model.address" #address="ngModel" name="address" >
+          </div>
+          <div class="col">
+            <label id="labeltext">Employee Email</label>
+            <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Email" 
+            [(ngModel)]="this.model.email" #email="ngModel" name="email" >
+          </div>
+          <div class="col">
+            <label id="labeltext">Employee DOB </label>
+            <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Date of Birth" 
+            [(ngModel)]="this.model.dob" #dob="ngModel" name="dob" >
+          </div>
+      </div>
+
+      <div class="form-row mb-4">
+        <div class="col">
+          <label id="labeltext">ContractNumber </label>
+          <input type="text" id="defaultRegisterFormFirstName" class="form-control"
+           placeholder="Contract Number" 
+          [(ngModel)]="this.model.contractnumber" #contractnumber="ngModel" 
+          name="contractnumber" >
+        </div>
+        <div class="col">
+          <label id="labeltext">NPWP Number </label>
+          <input type="text" id="defaultRegisterFormLastName" 
+          class="form-control" placeholder="NPWP Number" 
+          [(ngModel)]="this.model.npwp" #npwp="ngModel" name="npwp" >
+        </div>
+
+        <div class="col">
+          <label id="labeltext">BPJS </label>
+          <input type="text" id="defaultRegisterFormLastName" 
+          class="form-control" placeholder="BPJS"
+           [(ngModel)]="this.model.bpjs" #bpjs="ngModel" name="bpjs" >
+        </div>
+      </div>
+
+      <div class="form-row mb-4">
+        <div class="col">
+          <label id="labeltext"> Monthly Salary </label>
+          <input type="text" id="defaultRegisterFormFirstName" 
+          class="form-control" placeholder="Monthly Salary" 
+          [(ngModel)]="this.model.monthlysalary" #monthlysalary="ngModel" 
+          name="monthlysalary" >
+        </div>
+        <div class="col">
+          <label id="labeltext">Work Hour </label>
+          <input type="text" id="defaultRegisterFormLastName" class="form-control"
+           placeholder="Work Hour" 
+          [(ngModel)]="this.model.workHour" #workHour="ngModel" name="workHour" >
+        </div>
+
+        <div class="col">
+          <label id="labeltext">Annual Leave </label>
+            <input type="text" id="defaultRegisterFormLastName" class="form-control" 
+            placeholder="Annual Leave"
+             [(ngModel)]="this.model.annualLeave" #annualLeave="ngModel" 
+             name="annualLeave" >
+        </div>
+      </div>
+
+      <br/>
+      <div class="form-row mb-8">
+        <div class="col-2"></div>
+        <div class="col">
+          <button id="save-butn">
+            Save
+          </button>
+          
+          &nbsp;&nbsp;
+          <button id="cancel-butn" (click)="cancelEmployee()">
+            Cancel
+          </button>
+        </div>
+        <div class="col-2"></div>
+      </div>
+   
+    </form>
+    
+                    	
+    

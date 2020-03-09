@@ -1,0 +1,84 @@
+<div class="row fix-height overflow-hidden w-100 m-0">
+  <div class="col-4 px-4 h-100 overflow-scroll">
+    <div class="search-box">
+      <i class="fas fa-search search-icon" aria-hidden="true"></i>
+      <input
+        class="search-text-box"
+        type="search"
+        [(ngModel)]="searchText"
+        autocomplete="on"
+        placeholder="Employee Name / Code"
+      />
+    </div>
+    <div class="mt-3">
+      <ng-container *ngFor="let employee of employees; let i = index">
+        <app-employee-card
+          [rowClass]="i % 2 === 0 ? 'even-row' : 'odd-row'"
+          [employee]="employee"
+        ></app-employee-card>
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-5 px-4 h-100 overflow-scroll">
+    October Absent Card
+    <button class="col-5 float-right">
+      <i class="fas fa-print"></i>
+      Print Page
+    </button>
+    <div class="mt-3 font-sm">
+      <ng-container *ngFor="let absentCardDetail of absentCardDetails">
+        <app-employee-absent-card
+          [absentCardDetail]="absentCardDetail"
+        ></app-employee-absent-card>
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-3 px-4 h-100 overflow-scroll text-center">
+    <div class="row date-time-container">
+      <div class="col">
+        <div>SET DATE AND TIME</div>
+        <div>11 OCTOBER 2019</div>
+        <div class="font-x-lg">20:02:44</div>
+      </div>
+    </div>
+    <div class="row my-2">
+      <button class="col btn-red transparent-border">
+        Check In
+      </button>
+      <button class="col btn-green transparent-border">
+        Check Out
+      </button>
+    </div>
+    <div class="row my-2">
+      <button class="col btn-orange transparent-border">
+        Absent
+      </button>
+    </div>
+    <div class="row">
+      <div class="col">Reason</div>
+
+      <textarea class="w-100"></textarea>
+    </div>
+    <div class="w-100 font-sm">
+      Fill this form if late check in / early check out / absent *
+    </div>
+    <div class="row my-3 preview-detail">
+      <div class="col">
+        <div>Preview Detail</div>
+        <div
+          *ngFor="let key of objectKeys(previewDetails)"
+          class="row fomt-sm text-capitalize text-left font-sm"
+        >
+          <div class="col-4">{{ key }}</div>
+          <div class="col-8">{{ previewDetails[key] }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <button class="col m-2">
+        <i class="fas fa-print"></i>
+        Upload
+      </button>
+    </div>
+  </div>
+</div>

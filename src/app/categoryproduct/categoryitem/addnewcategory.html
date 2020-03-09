@@ -10,9 +10,14 @@
             </div>
             <br/>
             <label>Category Name</label>
-            <textarea type="text"  [(ngModel)]="model.name" #name="ngModel" name="name" 
-            id="categoryname-box" >
-            </textarea>
+          <!--  <textarea type="text"  [(ngModel)]="model.name" #name="ngModel" name="name" 
+            id="categoryname-box" >             </textarea>
+-->
+            <input type="text"  id="categoryname-box"
+            [(ngModel)]="model.name" 
+            #name="ngModel" 
+            placeholder="Category Name" name="name"/>          
+
             <label>Category Description</label>
             <textarea type="text"   [(ngModel)]="model.description" #description="ngModel" name="description" id="categorydescription-box">
             </textarea>

@@ -1,0 +1,68 @@
+$white: white;
+$black: black;
+$main-bg: #2f4755;
+$text-primary-color: white;
+$header-bg: #1a2a35;
+$login-form-bg: #e1e1e0;
+$login-title-color: #666666;
+$search-icon-color: #666666;
+$sidenav-bg: #253c49;
+$widget-sales-bg: #30cfa6;
+$widget-orders-bg: #b457fd;
+$widget-purchase-bg: #f89f47;
+$widget-earnings-bg: #78bbf3;
+$data-widget-bg: #434f5b;
+$data-widget-content-bg: #333c45;
+$sales-completed: #29c0b1;
+$sales-delayed: #fbbc06;
+$sales-canceled: #ff3366;
+$disabled-input-bg: #253844;
+$btn-red-bg: #c1272c;
+$btn-green-bg: #8cc63f;
+$btn-orange-bg: #f89f47;
+$preview-detail-bg: #1b2932;
+
+// Material colors:
+$material-tab-bg: #243641;
+$material-tab-content-bg: #1b2932;
+$material-table-header-bg: #333c45;
+$material-table-odd-bg: #3e4954;
+$material-table-even-bg: #47525e;
+$material-tab-label-separator-border: #58665e;
+$snackbar-success: #30cfa6;
+$snackbar-error: #ff3366;
+$snackbar-warning: #fbbc06;
+
+// font-sizes
+$normal: 14;
+$small: 12;
+$large: 18;
+$x-large: 26;
+
+@mixin fontSize($size) {
+  font-size: $size + px;
+}
+
+@mixin formatPlaceHolder() {
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $login-title-color;
+    opacity: 1; /* Firefox */
+    opacity: 50%;
+    @include fontSize($small);
+  }
+
+  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: $login-title-color;
+    opacity: 50%;
+    @include fontSize($small);
+  }
+
+  ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: $login-title-color;
+    opacity: 50%;
+    @include fontSize($small);
+  }
+}

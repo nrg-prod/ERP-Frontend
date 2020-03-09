@@ -1,0 +1,127 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "_base";
+@import "fonts/fonts";
+@import "font-awesome-override";
+@import "_material-override";
+
+* {
+  outline: none !important;
+  box-shadow: none !important;
+  letter-spacing: 0.02em;
+}
+
+body {
+  margin: 0 auto;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: $main-bg;
+
+  // setting the app font-color to white;
+  color: $text-primary-color;
+
+  // to format the placeholder text inside input fields
+  @include formatPlaceHolder();
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.font- {
+  &normal {
+    @include fontSize($normal);
+  }
+  &lg {
+    @include fontSize($large);
+  }
+  &x-lg {
+    @include fontSize($x-large);
+  }
+  &sm {
+    @include fontSize($small);
+  }
+  &bold {
+    font-family: RobotoBold, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+}
+
+.p-0-important {
+  padding: 0 !important;
+
+  &-l {
+    padding-left: 0 !important;
+  }
+  &-r {
+    padding-right: 0 !important;
+  }
+  &-t {
+    padding-top: 0 !important;
+  }
+  &-b {
+    padding-bottom: 0 !important;
+  }
+}
+
+.search-box {
+  position: relative;
+  .search-text-box {
+    width: 100%;
+    padding: 3px 10px;
+    appearance: none;
+    border: none;
+    border-radius: 0.4rem;
+    text-indent: 30px;
+  }
+
+  .search-icon {
+    color: $search-icon-color;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+  }
+}
+
+button {
+  appearance: none;
+  background-color: transparent;
+  color: $white;
+  border: 1px solid $white;
+}
+.transparent-border {
+  border: 1px solid transparent !important;
+}
+
+.tab-content-bg {
+  background-color: $material-tab-content-bg;
+}
+
+.btn {
+  &-red {
+    background-color: $btn-red-bg;
+  }
+  &-green {
+    background-color: $btn-green-bg;
+  }
+  &-orange {
+    background-color: $btn-orange-bg;
+  }
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+input:not([type="checkbox"]),
+textarea {
+  appearance: none !important;
+  border-radius: 0;
+  border: none;
+}

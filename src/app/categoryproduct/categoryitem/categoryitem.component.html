@@ -16,6 +16,9 @@
                         <i class="fa fa-pencil-square" aria-hidden="true"></i>
                         Edit/Delete
                     </span>
+
+                   
+
                 </div>
             </div>
             <br/>
@@ -44,342 +47,279 @@
 
     <!-- discount details start -->
 
-            <div  [ngStyle]="{'display':discountdetails}" >
-                <div class="col-12 col-sm-12 col-md-12  col-lg-12">
+    <div  [ngStyle]="{'display':discountdetails}" >
+        <div class="col-12 col-sm-12 col-md-12  col-lg-12">
 
-                 <br/>
-                  <div class="row">
-                        <div class="col-5 col-sm-5 col-md-5  col-lg-5">
-                            <h2>Discount Product</h2>
-                            <div class="row"  id="editdelete-button">
-                                <span (click)="addpromotion()">
-                                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                    Add
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-2 col-sm-2 col-md-2  col-lg-2">
-                        </div>
-                        <div class="col-5 col-sm-5 col-md-5  col-lg-5">
-                            <div class="row" id="button-printpage">
-                                <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
-                                &nbsp;&nbsp;
-                                <p id="font-size15">Print Page</p>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-
-                    <table  style="width: 100%;"> 
-                        <thead id="thead-color">
-                            <tr style="height: 55px;">
-                                <th>Product</th>
-                                <th>discount</th>
-                                <th>discounttime</th>
-                                <th>Qty</th>
-                                <th>price</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngFor="let discont of alldiscountlist" id="tbody-color">
-                            <tr style="height: 55px;">
-                                <td>{{discont.productname}}</td>
-                                <td>{{discont.discount}}</td>
-                                <td>{{discont.fromdate_promotionperiod}}-{{discont.todate_promotionperiod}}</td>
-                                <td>{{discont.qty}}</td>
-                                <td>{{discont.price}}</td>
-                                <td>
-                                    <div class="row" style="margin: -2px;">
-                                        <div id="rowedit-div" (click)="discountEdit(discont.discountcode)">
-                                        <i class="fa fa-pencil-square-o" id="rowedit-icon" aria-hidden="true"></i>  
-                                        </div>  
-                                        &nbsp;&nbsp;
-                                        <div id="rowdelete-div" (click)="discountDelete(discont.discountcode)">
-                                            <i class="fa fa-trash-o" id="rowdelete-icon" aria-hidden="true"></i> 
-                                        </div>   
-                                    </div> 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                      
-                </div>
-            </div> 
-
-     <!--  discount details end -->
-            
-
-        <!--Fiber details start
-            
-        <div  [ngStyle]="{'display':fiberdetails}" >
-            <div class="col-12 col-sm-12 col-md 12 col-lg-12">
-
-             <br/>
-              <div class="row">
-                    <div class="col-5 col-sm-5 col-md 5 col-lg-5">
-                        <h2>Fiber Product</h2>
-                        <div class="row"  id="editdelete-button">
-                            <span (click)="addNewProduct()">
-                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                Add
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-2 col-sm-2 col-md 2 col-lg-2">
-                    </div>
-                    <div class="col-5 col-sm-5 col-md 5 col-lg-5">
-                        <div class="row" id="button-printpage">
-                            <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
-                            &nbsp;&nbsp;
-                            <p id="font-size15">Print Page</p>
-                        </div>
+            <br/>
+            <div class="row">
+                <div class="col-5 col-sm-5 col-md-5  col-lg-5">
+                    <h2>Discount Product</h2>
+                    <div class="row"  id="editdelete-button">
+                        <span (click)="addpromotion()">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Add
+                        </span>
                     </div>
                 </div>
-
-                <br/>
-              
-                <mat-form-field style="color: black;">
-                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                  </mat-form-field>
-                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-                
-                     <div class="mat-elevation-z8">
-                    <table mat-table [dataSource]="dataSource" matSort>
-                        ProductCode Column 
-                      <ng-container matColumnDef="Productcode">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Productcode </th>
-                        <td mat-cell *matCellDef="let row"> {{row.Productcode}} </td>
-                      </ng-container>
-                  
-                     Product Name Column
-                      <ng-container matColumnDef="ProductName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ProductName </th>
-                        <td mat-cell *matCellDef="let row"> {{row.ProductName}} </td>
-                      </ng-container>
-
-                     Discount Column 
-                       <ng-container matColumnDef="Discount">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-                        <td mat-cell *matCellDef="let row"> {{row.discount}} </td>
-                      </ng-container>
-
-                       discounttime Column 
-                       <ng-container matColumnDef="DiscountTime">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </th>
-                        <td mat-cell *matCellDef="let row"> {{row.discounttime}} </td>
-                      </ng-container>
-
-                    qty Column 
-                       <ng-container matColumnDef="Qty">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> SellPrice </th>
-                        <td mat-cell *matCellDef="let row"> {{row.qty}} </td>
-                      </ng-container>
-
-                     price Column 
-                      <ng-container matColumnDef="Price">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> price </th>
-                        <td mat-cell *matCellDef="let row"> {{row.price}} </td>
-                      </ng-container>
-
-                    edit/delete Column 
-                      <ng-container matColumnDef="editdelete">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
-                        <td mat-cell *matCellDef="let row"> 
-                            <div class="row" style="margin-left: 0px;">
-                                <div id="rowview-div" (click)="productview()">
-                                    <i class="fa fa-eye" id="rowview-icon" aria-hidden="true"></i>    
-                                </div>  
-                                &nbsp;
-                                <div id="rowprint-div" (click)="productprint()">
-                                    <i class="fa fa-print" id="rowdelete-icon2" aria-hidden="true"></i>    
-                                </div>  
-                                &nbsp;
-                                <div id="rowedit-div2" (click)="productEdit()">
-                                    <i class="fa fa-pencil-square-o" id="rowdelete-icon2" aria-hidden="true"></i>    
-                                </div>  
-                                &nbsp;
-                                <div id="rowdelete-div2" (click)="discountDelete()">
-                                    <i class="fa fa-trash-o" id="rowdelete-icon2" aria-hidden="true"></i>    
-                                </div>   
-                             </div> 
-                        </td>
-                      </ng-container>
-                  
-                    
-                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-                      </tr>
-                    </table>
-                </div>
-            </div>
-        </div> 
-
-       Fiber detail end-->    
-
-          <!--All Items data table start-->  
-        <div [ngStyle]="{'display':alldetails}">
-            <div class="col-12 col-sm-12 col-md 12 col-lg-12">
-
-             <br/>
-              <div class="row">
-                    <div class="col-5 col-sm-5 col-md 5 col-lg-5">
-                        <h2>{{itemtitle}}</h2>
-                        <div class="row"  id="editdelete-button">
-                            <span (click)="addNewProduct()">
-                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                Add
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-7 col-sm-7 col-md 7 col-lg-7">
-                       <div class="row">
+                <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                    <div class="row">
+                        <div class="col-auto">
                         <div class="row" id="button-printpage">
                             <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
                             <p id="font-size15">Print Page</p>  
                         </div>
-                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                            <mat-form-field style="color: black;">
-                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                            </mat-form-field>
-                         </div>
+                        </div>
+                           
+                        <div class="col">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                            <input
+                              class="search-text-box"
+                              type="search"
+                              matInput (keyup)="allproductFilter($event.target.value)"
+                              placeholder="Search All Product}"
+                            />
+                          </div>  
+                        </div>
                     </div>
                 </div>
-              
-               
-
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-                <div class="mat-elevation-z8">
-
-                    <table mat-table [dataSource]="dataSource" matSort>
-                    
-                        <ng-container matColumnDef="productname">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ProductName </th>
-                            <td mat-cell *matCellDef="let row"> {{row.productname}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="description">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-                            <td mat-cell *matCellDef="let row"> {{row.description}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="vendorcode">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> VendorCode </th>
-                            <td mat-cell *matCellDef="let row"> {{row.vendorcode}} </td>
-                        </ng-container>
-                        
-                        
-                        <ng-container matColumnDef="sellingprice">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> SellingPrice </th>
-                            <td mat-cell *matCellDef="let row"> {{row.sellingprice}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="price">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-                            <td mat-cell *matCellDef="let row"> {{row.price}} </td>
-                        </ng-container>
-                        
-                        
-
-                        <ng-container matColumnDef="editdelete">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-                            <td mat-cell *matCellDef="let row"> 
-                            <div class="row" style="margin: -4px;">
-                                <div id="rowedit-div" (click)="allproducteditcall(row.prodcode)">
-                                <i class="fa fa-pencil-square-o" id="rowedit-icon" aria-hidden="true"></i>  
-                                </div>  
-                                &nbsp;&nbsp;
-                                <div id="rowdelete-div" (click)="allproductdelete(row.prodcode)">
-                                    <i class="fa fa-trash-o" id="rowdelete-icon" aria-hidden="true"></i> 
-                                </div>   
-                            </div> 
-                            </td>
-                        </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-                        <tr mat-row [ngClass]="table-row" tabindex="1" 
-                        *matRowDef="let row; columns: displayedColumns;">
-                        </tr>
-                    </table>
-                    
-                </div>  
             </div>
-        </div> 
-        <!--All Item data table details end-->    
+            <br/>
 
-           <!--Free gift Items data table start-->  
-           <div [ngStyle]="{'display':freegiftdetails}">
-            <div class="col-12 col-sm-12 col-md 12 col-lg-12">
+            <table class="w-100 mt-4" mat-table [dataSource]="dataSource3" matSort>
+                <ng-container matColumnDef="Product">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Product </th>
+                    <td mat-cell *matCellDef="let row"> {{row.productname}} </td>
+                </ng-container>
 
-             <br/>
-              <div class="row">
-                    <div class="col-5 col-sm-5 col-md 5 col-lg-5">
-                        <h2>{{itemtitle}}</h2>
-                        <div class="row"  id="editdelete-button">
-                            <span (click)="addpromotion()">
-                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                Add
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-7 col-sm-7 col-md-7 col-lg-7">
-                        <div class="row">
-                            <div class="row" id="button-printpage">
-                                <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
-                                &nbsp;&nbsp;
-                                <p id="font-size15">Print Page</p>
-                            </div>
-                            <mat-form-field style="color: black;">
-                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-                            </mat-form-field>            
-                        </div>
-                    </div>
-                </div>
+                <ng-container matColumnDef="discount">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> discount </th>
+                    <td mat-cell *matCellDef="let row"> {{row.discount}} </td>
+                </ng-container>
 
-                <br/>
-              
+                <ng-container matColumnDef="discounttime">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> discounttime </th>
+                    <td mat-cell *matCellDef="let row"
+                    > {{row.fromdate_promotionperiod}}-{{row.todate_promotionperiod}} 
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Qty">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty </th>
+                    <td mat-cell *matCellDef="let row">{{row.qty}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> price </th>
+                    <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row" class="actions"> 
+                        <i
+                        class="fas fa-edit"
+                        (click)="discountEdit(row.discountcode)"
+                        ></i>
+                        <i
+                        class="fas fa-trash"
+                        (click)="discountDelete(row.discountcode)"
+                        ></i>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns3;"></tr>
+                <tr mat-row [ngClass]="table-row" tabindex="1" 
+                *matRowDef="let row; columns: displayedColumns3;">
+                </tr>
+            </table>
+            
+            <mat-paginator [pageSizeOptions]="[5, 10]"></mat-paginator>
                 
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-                <div class="mat-elevation-z8">
+        </div>
+    </div> 
 
-                    <table mat-table [dataSource]="dataSource2" matSort>
-                    
-                        <ng-container matColumnDef="productname">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ProductName </th>
-                            <td mat-cell *matCellDef="let row"> {{row.productname}} </td>
-                        </ng-container>
+      
 
-                        <ng-container matColumnDef="discounttime">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Discount Time </th>
-                            <td mat-cell *matCellDef="let row"> {{row.fromdate_promotionperiod}} </td>
-                        </ng-container>
-                        
-                   
-                        <ng-container matColumnDef="action">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-                            <td mat-cell *matCellDef="let row"> 
-                            <div class="row" style="margin: -4px;">
-                                <div id="rowedit-div" (click)="discountEdit(row.discountcode)">
-                                <i class="fa fa-pencil-square-o" id="rowedit-icon" aria-hidden="true"></i>  
-                                </div>  
-                                &nbsp;&nbsp;
-                                <div id="rowdelete-div" (click)="discountDelete(row.discountcode)">
-                                    <i class="fa fa-trash-o" id="rowdelete-icon" aria-hidden="true"></i> 
-                                </div>   
-                            </div> 
-                            </td>
-                        </ng-container>
+    <!--All Items data table start-->  
+    <div [ngStyle]="{'display':alldetails}">
+        <div class="col-12 col-sm-12 col-md 12 col-lg-12">
 
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns2;"></tr>
-                        <tr mat-row [ngClass]="table-row" tabindex="1" 
-                        *matRowDef="let row; columns: displayedColumns2;">
-                        </tr>
-                    </table>
-                    
-                </div>  
+            <br/>
+            <div class="row">
+                <div class="col-5 col-sm-5 col-md 5 col-lg-5">
+                    <h2>{{itemtitle}}</h2>
+                    <div class="row"  id="editdelete-button">
+                        <span (click)="addNewProduct()">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Add
+                        </span>
+                    </div>
+                </div>
+                <div class="col-7 col-sm-7 col-md 7 col-lg-7">
+                    <div class="row">
+                    <div class="col-auto">
+                    <div class="row" id="button-printpage">
+                        <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
+                        <p id="font-size15">Print Page</p>  
+                    </div>
+                    </div>
+                       
+                    <div class="col">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                        <input
+                          class="search-text-box"
+                          type="search"
+                          matInput (keyup)="allproductFilter($event.target.value)"
+                          placeholder="Search All Product}"
+                        />
+                      </div>  
+                    </div>
+                    </div>
+                </div>
             </div>
-        </div> 
-        <!--Free gift Item data table details end-->    
+            
+            
+
+            <table class="w-100 mt-4" mat-table [dataSource]="dataSource" matSort>
+            
+                <ng-container matColumnDef="productname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ProductName </th>
+                    <td mat-cell *matCellDef="let row"> {{row.productname}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                    <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="vendorcode">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> VendorCode </th>
+                    <td mat-cell *matCellDef="let row"> {{row.vendorcode}} </td>
+                </ng-container>
+                
+                
+                <ng-container matColumnDef="sellingprice">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> SellingPrice </th>
+                    <td mat-cell *matCellDef="let row"> {{row.sellingprice}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                    <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+                </ng-container>
+                
+                
+
+                <ng-container matColumnDef="editdelete">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row" class="actions"> 
+                        <i
+                        class="fas fa-edit"
+                        (click)="allproducteditcall(row.prodcode)"
+                        ></i>
+                        <i
+                        class="fas fa-trash"
+                        (click)="allproductdelete(row.prodcode)"
+                        ></i>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                <tr mat-row [ngClass]="table-row" tabindex="1" 
+                *matRowDef="let row; columns: displayedColumns;">
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10]"></mat-paginator>
+                
+        </div>
+    </div> 
+<!--All Item data table details end-->    
+
+        <!--Free gift Items data table start-->  
+        <div [ngStyle]="{'display':freegiftdetails}">
+        <div class="col-12 col-sm-12 col-md 12 col-lg-12">
+
+            <br/>
+            <div class="row">
+                <div class="col-5 col-sm-5 col-md 5 col-lg-5">
+                    <h2>{{itemtitle}}</h2>
+                    <div class="row"  id="editdelete-button">
+                        <span (click)="addpromotion()">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            Add
+                        </span>
+                    </div>
+                </div>
+                <div class="col-7 col-sm-7 col-md-7 col-lg-7">
+                    <div class="row">
+                        <div class="col-auto">
+                        <div class="row" id="button-printpage">
+                            <i class="fa fa-print" aria-hidden="true" id="icon-align"></i>
+                            <p id="font-size15">Print Page</p>
+                        </div>
+                        </div>
+
+                        <div class="col">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                            <input
+                              class="search-text-box"
+                              type="search"
+                              matInput (keyup)="freegiftFilter($event.target.value)"
+                              placeholder="Search For Free Gift"
+                            />
+                          </div>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            
+            
+            
+
+        <table class="w-100 mt-4" mat-table [dataSource]="dataSource2" matSort>
+            <ng-container matColumnDef="productname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ProductName </th>
+                <td mat-cell *matCellDef="let row"> {{row.productname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="discounttime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Discount Time </th>
+                <td mat-cell *matCellDef="let row"> {{row.fromdate_promotionperiod}} </td>
+            </ng-container>
+            
+        
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                <td mat-cell *matCellDef="let row" class="actions"> 
+                    <i
+                    class="fas fa-edit"
+                    (click)="discountEdit(row.discountcode)"
+                    ></i>
+                    <i
+                    class="fas fa-trash"
+                    (click)="discountDelete(row.discountcode)"
+                    ></i>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns2;"></tr>
+            <tr mat-row [ngClass]="table-row" tabindex="1" 
+            *matRowDef="let row; columns: displayedColumns2;">
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10]"></mat-paginator>
+                
+        </div>
+    </div> 
+    <!--Free gift Item data table details end-->    
 
 
 

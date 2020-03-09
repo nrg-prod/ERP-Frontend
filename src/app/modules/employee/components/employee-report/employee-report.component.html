@@ -1,0 +1,78 @@
+<div class="row fix-height overflow-hidden w-100 m-0">
+  <div class="col-4 h-100 overflow-scroll">
+    <div>Employee Report</div>
+    <div class="search-box">
+      <i class="fas fa-search search-icon" aria-hidden="true"></i>
+      <input
+        class="search-text-box"
+        type="search"
+        [(ngModel)]="searchText"
+        autocomplete="on"
+        placeholder="Employee Name / Code"
+      />
+    </div>
+    <div class="mt-3">
+      <ng-container *ngFor="let employee of employees; let i = index">
+        <app-employee-card
+          [rowClass]="i % 2 === 0 ? 'even-row' : 'odd-row'"
+          [employee]="employee"
+        ></app-employee-card>
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-5 px-4 h-100 overflow-scroll">
+    <div class="row mb-3 preview-detail">
+      <div class="col p-0">
+        <div>Preview Employee</div>
+        <div class="row ">
+          <div class="col">
+            <img class="preview-photo" src="assets/images/bk1.jpg" />
+          </div>
+          <div class="col">
+            <div
+              *ngFor="let key of objectKeys(previewDetails)"
+              class="row fomt-sm text-capitalize text-left font-sm"
+            >
+              <div class="col-4 p-0 text-truncate">{{ ts.translate(key) }}</div>
+              <div class="col-8 text-truncate">{{ previewDetails[key] }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    Absent Card
+    <button class="col-5 float-right">
+      <i class="fas fa-print"></i>
+      Print Page
+    </button>
+    <div class="row mt-3">
+      <div class="col-4">Time:</div>
+      <div class="col-8"><input class="w-100" type="text" /></div>
+    </div>
+    <div class="mt-3 font-sm">
+      <ng-container *ngFor="let absentCardDetail of absentCardDetails">
+        <app-employee-absent-card
+          [absentCardDetail]="absentCardDetail"
+        ></app-employee-absent-card>
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-3 h-100 overflow-scroll employee-report-form">
+    <div>Submit Employee Daily Report</div>
+    <div class="row">
+      <div class="col-4">Date:</div>
+      <div class="col-8">
+        <input class="w-100" type="text" placeholder="date" />
+      </div>
+    </div>
+    <textarea class="w-100 mt-3 h-50" placeholder="Enter report"></textarea>
+    <div class="row m-0">
+      <button class="col btn-red transparent-border">
+        Cancel
+      </button>
+      <button class="col btn-green transparent-border">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

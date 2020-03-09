@@ -15,7 +15,7 @@
                      <p>{{ list.name }}</p>
                   </div>
                   <div class="col-3 col-md-3 col-lg-3">
-                    <i class="fa fa-trash-o" aria-hidden="true" (click)="categorydelete(list.categorycode)" style="color: red;"></i>
+                    <i class="fas fa-trash" aria-hidden="true" (click)="categorydelete(list.categorycode)" style="color: red;"></i>
                   </div>
                 </div>
                 </div>
@@ -24,9 +24,16 @@
          <div class="col-7 col-md-7 col-sm-7 col-lg-7">
              <br/>
              <p>Category Name</p>
-             <textarea id="categoryname-div" [(ngModel)]="model.name" #name="ngModel" 
+          <!--   <textarea id="categoryname-div" [(ngModel)]="model.name" #name="ngModel" 
              placeholder="Enter category name" name="name">{{this.model.name}}
              </textarea>
+-->
+             <input type="text"  id="categoryname-div"
+             [(ngModel)]="model.name" 
+             #name="ngModel" 
+             name="name"/>   
+
+
              <br/>
              <p>Category Description</p>
              <textarea type="text" id="categorydesc-div" value="{{this.model.description}}"

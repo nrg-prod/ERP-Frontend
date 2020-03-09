@@ -4,7 +4,6 @@ import { PettycashaddComponent } from './pettycashadd/pettycashadd.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
-import { Finance } from 'src/app/_models/finance';
 
 import {
   MatAutocompleteModule,
@@ -46,7 +45,7 @@ import { Ng2CompleterModule } from 'ng2-completer';
 import { FinanceService } from './finance.service';
 
 const routes: Routes = [
-  { path: 'pettycashadd', component: PettycashaddComponent },
+  { path: '', component: PettycashaddComponent },
 
 ];
 

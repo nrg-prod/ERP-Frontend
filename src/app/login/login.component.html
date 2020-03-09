@@ -1,74 +1,84 @@
-<!--<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
--->
-
-<div id="fixed-heder">
-    <div class="fixed-nav-bar">
-            
-      <nav class="navbar navbar-inverse" id="back-colorforheader">
-        <img src="./assets/images/nrg_logo.png"  id="logo-img"/>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                      
-            </div>
-        </nav>
-    </div>
-</div>
-<div id="black-color">
-  
-  <!--<form class="modal-content animate" name="form" (ngSubmit)="f.form.valid && onClickSubmit()" #f="ngForm" novalidate>-->
-  <form  name="form" (ngSubmit)="f.form.valid && onClickSubmit()" #f="ngForm" novalidate>
-    <div id="login-background">
-      <br/>
-     <div class="container">
-        <h2 id="login-text">Employement Sign In</h2>
-
-      <div class="row" style="justify-content: center;">
-        <div id="usericon-div">
-          <i class="fa fa-user-circle-o" aria-hidden="true" id="user-icon"></i>
-        </div>
-        <input type="text"  class="form-control" placeholder="Username/Email"  
-        name="currentusername" [(ngModel)]="model.currentusername" 
-        #currentusername="ngModel" required/>
-      </div>
-      <div *ngIf="f.submitted && !currentusername.valid" class="help-block">Username is required</div>
-
-      <div class="row" style="justify-content: center;">
-        <div id="pwdicon-div">
-          <i class="fa fa-lock" aria-hidden="true" id="pwd-icon"></i>
-        </div>
-        <input class="form-control" type="{{passwordtype}}" placeholder="Password"  id="typebox-with" name="currentpassword" [(ngModel)]="model.currentpassword"  #currentpassword="ngModel"
-        required> 
-      </div>
-
+<header class="w-100 d-flex align-items-center justify-content-center">
+  <h1 hidden>ERP</h1>
+  <img src="assets/images/nrg-logo.png" class="img-fluid logo" alt="app logo" />
+</header>
+<div
+  class="d-flex align-items-center justify-content-center login-page-main-container"
+>
+  <div class="login-form m-3">
+    <p class="font-x-lg title text-center mb-4">Employment Sign In</p>
+    <form
+      name="loginForm"
+      (submit)="loginForm.form.valid && login()"
+      #loginForm="ngForm"
+      novalidate
+    >
       <div class="row">
-        <div class="col-1 col-md-1 col-lg-1"></div>
-        <div class="col-11 col-md-11 col-lg-11">
-          <input type="checkbox" (click)="showPassword()" value="Show Password" style="margin: 6px;" />
-          <label for="Show Password"  class="forgot">Show Password</label>
-        </div>
+        <label
+          class="m-0 p-0 icon-placeholder text-white d-flex align-items-center justify-content-center"
+          for="userName"
+          ><i class="fas fa-user"></i
+        ></label>
+        <input
+          class="col p-2 m-0 border-0"
+          id="userName"
+          type="text"
+          placeholder="Username/Email"
+          name="currentusername"
+          [(ngModel)]="model.currentusername"
+          #currentusername="ngModel"
+          required
+          autofocus
+        />
       </div>
-
+      <p
+        class="font-sm my-1 text-danger"
+        [ngStyle]="{
+          visibility:
+            loginForm.submitted && !currentusername.valid ? 'visible' : 'hidden'
+        }"
+      >
+        Username is required
+      </p>
       <div class="row">
-        <div class="col-1 col-md-1 col-lg-1"></div>
-        <div class="col-6 col-md-6 col-lg-6">
-          <div *ngIf="f.submitted && !currentpassword.valid" class="help-block">Password is required</div>        
-          <button type="submit" id="project-backcolor">Sign In</button>
-        </div>
-          <div class="col-5 col-md-5 col-lg-5">
-            <div class="row">
-              <input type="checkbox" checked="checked" name="remember" style="margin: 5px;"> 
-              <p id="rememberme-text">Remember me</p>
-            </div>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-          </div>
-       
+        <label
+          for="password"
+          class="m-0 p-0 icon-placeholder text-white d-flex align-items-center justify-content-center"
+          ><i class="fas fa-lock"></i
+        ></label>
+        <input
+          id="password"
+          class="col p-2 m-0 border-0"
+          type="{{ passwordtype }}"
+          placeholder="Password"
+          id="typebox-with"
+          name="currentpassword"
+          [(ngModel)]="model.currentpassword"
+          #currentpassword="ngModel"
+          required
+        />
       </div>
-    </div>
-
-   <!-- <div class="container" style="background-color:#f1f1f1">
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>-->
-
-   </div>
-  </form>
+      <p
+        class="font-sm my-1 text-danger"
+        [ngStyle]="{
+          visibility:
+            loginForm.submitted && !currentpassword.valid ? 'visible' : 'hidden'
+        }"
+      >
+        Password is required
+      </p>
+      <div class="row mb-3 mt-1">
+        <button class="col-6" type="submit">Sign In</button>
+        <div class="col-6 text-right p-0">
+          <input type="checkbox" id="remember" />
+          <label for="remember" class="font-sm cursor-pointer ml-2"
+            >Remember me</label
+          >
+          <p class="d-inline-block font-sm m-0">
+            <a href="#">Forgot password?</a>
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
-

@@ -1,0 +1,15 @@
+@import "_base";
+
+.fix-height {
+  height: 650px;
+}
+
+.employee-report-form,
+.preview-detail {
+  background: $preview-detail-bg;
+  padding: 20px;
+}
+.preview-photo {
+  width: 100%;
+  height: 140px;
+}

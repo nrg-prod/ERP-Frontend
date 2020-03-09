@@ -1,0 +1,18 @@
+@import "_base";
+
+header {
+  background-color: $header-bg;
+  height: 70px;
+
+  .logo {
+    width: 100px;
+    left: 50%;
+
+    // margin adjust for using routerLink
+    margin-top: -20px;
+  }
+
+  a {
+    color: inherit;
+  }
+}

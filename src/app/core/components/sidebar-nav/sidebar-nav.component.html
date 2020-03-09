@@ -1,0 +1,31 @@
+<mat-drawer-container class="header-margin-adjust w-100" autosize>
+  <mat-drawer #drawer mode="side" disableClose="true" opened="true" class="">
+    <button
+      class="navbar-toggler d-flex align-items-center menu-icon-margin-adjust"
+      (click)="isExpanded = !isExpanded"
+      aria-label="Toggle Side Navigation"
+    >
+      <i class="fas fa-bars fa-1x"></i>
+      <p class="m-0 pl-3" mat-line *ngIf="isExpanded">Show/Hide Menu</p>
+    </button>
+
+    <mat-nav-list>
+      <ng-container *ngFor="let menuItem of menuItems">
+        <mat-list-item>
+          <a
+            class="d-flex align-items-center"
+            [routerLink]="[menuItem.path]"
+            routerLinkActive="router-link-active"
+          >
+            <img [src]="menuItem.icon" />
+            <p class="m-0 pl-3" mat-line *ngIf="isExpanded">
+              {{ menuItem.label }}
+            </p>
+          </a>
+        </mat-list-item>
+      </ng-container>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <ng-content></ng-content>
+</mat-drawer-container>

@@ -1,0 +1,17 @@
+<mat-tab-group
+  animationDuration="0ms"
+  [selectedIndex]="activeTab"
+  (selectedIndexChange)="tabChanged($event)"
+>
+  <mat-tab
+    ><ng-template mat-tab-label>Employee List</ng-template>
+    <app-employee-list [tabChange]="activeTab === 0"></app-employee-list
+  ></mat-tab>
+  <mat-tab
+    ><ng-template mat-tab-label>Add New Employee</ng-template>
+    <app-employee-add
+     
+    ></app-employee-add>
+  </mat-tab>
+ 
+</mat-tab-group>

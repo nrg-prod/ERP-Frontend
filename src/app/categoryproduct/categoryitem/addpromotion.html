@@ -16,6 +16,12 @@
                   </div>
                 
                 <div class="col-7 col-md-7 col-sm-7 col-lg-7">
+                <!--  <ng2-completer class="autosearch1" 
+                  placeholder="&#xf002; Search here"  
+                    [(ngModel)]="model.productname" name="productname"
+                     #productname="ngModel" [datasource]="dataService" 
+                    [minSearchLength]="0" ></ng2-completer> -->
+
                   <select id="selectbox-category" name ="selectcategory" 
                   [(ngModel)]="model.categorycode" 
                   #categorycode="ngModel" required>
@@ -33,11 +39,21 @@
                   <p>:</p>
                 </div>
                 <div class="col-7 col-md-7 col-sm-7 col-lg-7">
-                <ng2-completer class="autosearch1" 
-                placeholder="&#xf002; Search here"  
-                  [(ngModel)]="model.productname" name="productname"
-                   #productname="ngModel" [datasource]="dataService" 
-                  [minSearchLength]="0" ></ng2-completer>
+                  <div class="search-box">
+                    <i class="fas fa-search search-icon"
+                     style="left: 0px;top: 11px;"
+                     aria-hidden="true">
+                    </i>
+                    <input
+                      class="search-text-box"
+                      type="search"
+                      [(ngModel)]="model.productname" 
+                      name="productname"
+                      #productname="ngModel"
+                      autocomplete="on"
+                      placeholder="Search here"
+                    />
+                  </div>
                 </div>
             </div>
         </div>
@@ -45,18 +61,22 @@
             <div class="col-4 col-md-4 col-sm-4 col-lg-4"></div>
             <div class="col-8 col-md-8 col-sm-8 col-lg-8">
             <div class="row" style="margin-left: 0px;">
-              <input type="radio"  value="discount" [(ngModel)]="model.discountType" #discountType="ngModel"
-              name="radiopromo" style="margin: 7px;"/>
+              <input type="radio"name="radiopromo" style="margin: 7px;"/>
                   <p>Discount</p>
                   &nbsp;
-                  <input type="text" placeholder="%" id="dicountinput-box"/>
+                  <input type="text" placeholder="%" id="dicountinput-box"
+                  name ="discount" 
+                  [(ngModel)]="model.discount" 
+                  #discount="ngModel"
+                  />
                   &nbsp;&nbsp;&nbsp;
                   <p>Qty</p>
                   &nbsp;
                   <input type="text" id="qtyinput-box"
                   name ="qty" 
                   [(ngModel)]="model.qty" 
-                  #qty="ngModel"/>
+                  #qty="ngModel"
+                  />
             </div>
 
             <div class="row" style="margin-left: 0px;">
@@ -94,23 +114,15 @@
                 </div>
                 <div class="col-7 col-md-7 col-sm-7 col-lg-7" style="margin-left: -21px;">
                     <div class="row">
-                     <!--   <input type="text" placeholder="xx-xx-xxxx" id="promotion-periodbox"
-                        name ="promotionperiod" 
-                        [(ngModel)]="model.promotionperiod" 
-                        #v="ngModel"/> -->
 
-                        <input type="date" class="form-control"
+                       <input type="date" class="form-control"
                          id="promotion-periodbox"
                         [(ngModel)]="model.fromdate_promotionperiod" name="fromdate_promotionperiod"
-                        #fromdate_promotionperiod="ngModel" />
+                        #fromdate_promotionperiod="ngModel" /> 
 
-                        &nbsp;&nbsp;
+                        &nbsp;
                         <hr class="hrline">
-                        &nbsp;&nbsp;
-                    <!--    <input type="text" placeholder="xx-xx-xxxx" id="promotion-periodbox2"
-                        name ="promotionperiod" 
-                        [(ngModel)]="model.promotionperiod" 
-                        #promotionperiod="ngModel"/> -->
+                        &nbsp;
 
                         <input type="date" class="form-control"
                          id="promotion-periodbox2"

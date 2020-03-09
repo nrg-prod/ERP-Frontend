@@ -1,0 +1,317 @@
+<div class="employee-content">
+  <div class="row">
+    <div class="col-lg-11">
+      
+
+      <div id="addsales-div">
+        <br /><br />
+        <div class="group-gap" style="margin: 40px;">
+          <br /><br />
+          <form name="form">
+            <!-- <h5 class="mb-3">Sales Return  </h5>
+                <br/> -->
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label>Customer Name </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label>:</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <select
+                      class="form-control"
+                      style="background-color:#1B2931;color: white;"
+                      [(ngModel)]="model.customerName"
+                      name="customerName"
+                      #customerName="ngModel"
+                    >
+                      <option>-- Select --</option>
+                      <option
+                        *ngFor="let itemCustomer of customerList"
+                        value="{{ itemCustomer.customerName }}"
+                      >
+                        {{ itemCustomer.customerName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label>Product Category </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label>:</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <select
+                      class="form-control"
+                      style="background-color:#1B2931;color: white;"
+                      [(ngModel)]="model.category"
+                      name="category"
+                      #category="ngModel"
+                    >
+                      <option value="--- Select --- "> -- Select -- </option>
+                      <option
+                        *ngFor="let itemcategory of categoryList"
+                        value="{{ itemcategory.name }}-{{
+                          itemcategory.categorycode
+                        }}"
+                      >
+                        {{ itemcategory.name }}-{{ itemcategory.categorycode }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label>Product Name </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label>:</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <select
+                      class="form-control"
+                      style="background-color:#1B2931;color: white;"
+                      [(ngModel)]="model.productName"
+                      name="productName"
+                      #productName="ngModel"
+                    >
+                      <option value="--- Select --- "> -- Select -- </option>
+                      <option
+                        *ngFor="let item of productList"
+                        value="{{ item.productname }}-{{ item.prodcode }}"
+                      >
+                        {{ item.productname }}-{{ item.prodcode }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label>Quantity </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label>:</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <input
+                      type="text"
+                      class="form-control"
+                      style="background-color: #243642;border: 1px solid white;"
+                      [(ngModel)]="model.quantity"
+                      name="quantity"
+                      #quantity="ngModel"
+                      placeholder="     ltr/kg/pcs      "
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label>Date </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label>:</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <input
+                      class="form-control"
+                      style="background-color: #243642;border: 1px solid white;color:white;"
+                      value="{{ todayDate | date: 'dd/MM/yyyy' }}"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label>Item Status </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label>:</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="form-group">
+                      <li>
+                        <input
+                          type="radio"
+                          name="itemStatus"
+                          [(ngModel)]="model.itemStatus"
+                          #itemStatus="ngModel"
+                          value="damaged"
+                        />
+                        Damaged
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          name="itemStatus"
+                          [(ngModel)]="model.itemStatus"
+                          #itemStatus="ngModel"
+                          value="expaired"
+                        />
+                        Expaired
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          name="itemStatus"
+                          [(ngModel)]="model.itemStatus"
+                          #itemStatus="ngModel"
+                          value="bs"
+                        />
+                        Bs
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          name="itemStatus"
+                          [(ngModel)]="model.itemStatus"
+                          #itemStatus="ngModel"
+                          value="others"
+                        />
+                        Others
+                      </li>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-4">
+                    <label>Return as </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label>:</label>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="form-group">
+                      <li>
+                        <input
+                          type="radio"
+                          name="returnStatus"
+                          [(ngModel)]="model.returnStatus"
+                          #returnStatus="ngModel"
+                          value="cash"
+                        />
+                        Cash
+                      </li>
+                      <li>
+                        <input
+                          type="radio"
+                          name="returnStatus"
+                          [(ngModel)]="model.returnStatus"
+                          #returnStatus="ngModel"
+                          value="Credit/Voucher"
+                        />
+                        Credit/Voucher
+                      </li>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="radio-toolbar">
+                    <label id="add-butn" (click)="addProduct()"
+                      >Add Product</label
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6" *ngIf="returntable">
+                <div id="box-dialouge">
+                  <br />
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h3 style="margin-left: 40px;">Summary</h3>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                      <button id="print-butn">
+                        &nbsp;<i
+                          class="fa fa-print"
+                          aria-hidden="true"
+                          id="icon-mod"
+                        ></i
+                        >&nbsp; <label id="text">Print Page</label>&nbsp;
+                      </button>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="row">
+                    <table class="scroll">
+                      <thead>
+                        <tr id="tr-color">
+                          <th>Date</th>
+                          <th>Item</th>
+                          <th>Category</th>
+                          <th>Customer</th>
+                          <th>Qty</th>
+                          <th>ItemStatus</th>
+                          <th>Return as</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let arr of fieldArray; let i = index">
+                          <td id="middleContent">
+                            {{ todayDate | date: "dd/MM/yyyy" }}
+                          </td>
+                          <td id="middleContent">{{ arr.productName }}</td>
+                          <td id="middleContent">{{ arr.category }}</td>
+                          <td id="middleContent">{{ arr.customerName }}</td>
+                          <td id="middleContent">{{ arr.quantity }}</td>
+                          <td id="middleContent">{{ arr.itemStatus }}</td>
+                          <td id="middleContent">{{ arr.returnStatus }}</td>
+                          <td id="middleContent">
+                            <div
+                              id="rowdelete-div"
+                              (click)="deleteFieldValue(i)"
+                            >
+                              <i
+                                class="fa fa-trash-o"
+                                id="rowdelete-icon"
+                                aria-hidden="true"
+                              ></i>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <br />
+                  <br />
+                  <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                      <div class="radio-toolbar">
+                        <label id="checkIn-butn" (click)="saveSalesReturn()"
+                          >Save</label
+                        >
+                        <label id="checkOut-butn" (click)="cancelSalesReturn()"
+                          >Cancel</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-lg-3"></div>
+                  </div>
+                  <br />
+                  <br />
+                </div>
+              </div>
+            </div>
+          </form>
+          <!-- Submit Button -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br /><br />
+</div>

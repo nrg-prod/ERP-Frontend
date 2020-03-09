@@ -1,14 +1,45 @@
-import {NgModule} from "@angular/core";
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgModule } from "@angular/core";
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import {
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS
+} from "@angular/material/snack-bar";
+
+import {
+  MatDatepickerModule,
+  MatPaginatorModule,
+  MatSidenavModule,
+  MatTableModule,
+  MatTabsModule,
+  MatListModule,
+  MatDialogModule
+} from "@angular/material";
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule,MatToolbarModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule],
-  exports: [CommonModule, MatButtonModule, MatToolbarModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule],
+  imports: [
+    MatDatepickerModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatTabsModule,
+    MatListModule,
+    MatMomentDateModule,
+    MatDialogModule,
+    MatSnackBarModule
+  ],
+  exports: [
+    MatDatepickerModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatTabsModule,
+    MatListModule,
+    MatMomentDateModule,
+    MatDialogModule,
+    MatSnackBarModule
+  ],
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1500 } }
+  ]
 })
-export class CustomMaterialModule { }
+export class CustomMaterialModule {}

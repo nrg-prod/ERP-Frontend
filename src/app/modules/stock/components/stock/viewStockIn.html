@@ -1,0 +1,93 @@
+<div id="box-dialouge">
+    <form name="editPurchaseform" (ngSubmit)="saveStockIn()">
+        <br/>
+        <div *ngIf="fullStock">
+            <h2 style="text-align: center;font-size: 22px;">Full StockIn Invoice {{ this.model.invoiceNumber }}</h2>
+            <br/>
+            <table class="scroll">
+                <thead>
+                    <tr id="tr-color">
+                        <th>NO.</th>
+                        <th>Category</th>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>PO Date</th>
+                        <th>Quantity</th>
+                        <th>Sub Total</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr *ngFor="let list of stockDetList; let i = index">
+                        <td id="{{ list.id }}">{{ i+1 }}</td>
+                        <td id="{{ list.id }}">{{ list.category }}</td>
+                        <td id="{{ list.id }}">{{ list.productName }}</td>
+                        <td id="{{ list.id }}">{{ list.description }}</td>
+                        <td id="{{ list.id }}">{{ list.poDate }}</td>
+                        <td id="{{ list.id }}">{{ list.quantity }}</td>
+                        <td id="{{ list.id }}">{{ list.netAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/> <br/>
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-5">
+                    <div class="radio-toolbar">
+                        <button id="checkIn-butn">Save</button>
+                        <label id="checkOut-butn" (click)="cancelInvoice()">Close</label>
+                    </div>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+            <br/> <br/>
+        </div>
+        <div *ngIf="partialStock">
+            <h2 style="text-align: center;font-size: 22px;">Partial StockIn Invoice {{ this.model.invoiceNumber }}</h2>
+            <br/>
+            <table class="scroll">
+                <thead>
+                    <tr id="tr-color">
+                        <th>NO.</th>
+                        <th>Category</th>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>PO Date</th>
+                        <th>Quantity</th>
+                        <th>Sub Total</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr *ngFor="let list of stockDetList; let i = index">
+                        <td id="{{ list.id }}">{{ i+1 }}</td>
+                        <td id="{{ list.id }}">{{ list.category }}</td>
+                        <td id="{{ list.id }}">{{ list.productName }}</td>
+                        <td id="{{ list.id }}">{{ list.description }}</td>
+                        <td id="{{ list.id }}">{{ list.poDate }}</td>
+                        <td id="{{ list.id }}"><input type="text" id="{{ list.id }}" 
+                            name="{{ list.quantity }}" style="width: 70px;" [(ngModel)]="list.quantity" 
+                            #quantity="ngModel" (change)="getTotalAmount(list.productName,list.quantity,list.category,list.id)" />
+                        </td> 
+                        <td id="{{ list.id }}">{{ list.netAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/> <br/>
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-5">
+                    <div class="radio-toolbar">
+                        <button id="checkIn-butn">Save</button>
+                        <label id="checkOut-butn" (click)="cancelInvoice()">Close</label>
+                    </div>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+            <br/> <br/>
+        </div>
+  
+    </form>
+
+</div>
+    

@@ -1,0 +1,10 @@
+@import "_base";
+
+.fix-height {
+  height: 650px;
+}
+
+.date-time-container,
+.preview-detail {
+  background: $material-table-even-bg;
+}

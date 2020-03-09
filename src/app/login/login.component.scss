@@ -1,0 +1,41 @@
+@import "_base";
+
+header {
+  background-color: $header-bg;
+  height: 100px;
+
+  .logo {
+    height: 70px;
+  }
+}
+
+.login-page-main-container {
+  height: 70vh;
+
+  .login-form {
+    background-color: $login-form-bg;
+    padding: 40px 80px;
+    color: $login-title-color !important;
+
+    a {
+      color: $login-title-color !important;
+    }
+
+    .title {
+      color: $login-title-color;
+    }
+
+    button[type="submit"] {
+      color: $white;
+      background: $login-title-color;
+      padding: 8px 40px;
+      font-family: "RobotoBold";
+    }
+
+    .icon-placeholder {
+      background-color: $login-title-color;
+      height: 50px;
+      width: 50px;
+    }
+  }
+}

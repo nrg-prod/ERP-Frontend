@@ -1,0 +1,296 @@
+<div>
+  <div class="row">
+    <div class="col-lg-11"> 
+      <div>
+       
+        <br/>
+        <div>
+          <form name="form">
+            <div class="row">
+              <div class="col-lg-5">   
+                <div class="col" style="font-size: 14px;">
+                  Make Sales Order
+                </div>               
+                <br/>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label id="labeltext">Product Category </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label id="labeltext">:</label>
+                  </div>
+                  <div class="col-lg-5">
+                    <select
+                      [(ngModel)]="model.category"
+                      #category="ngModel"
+                      name="category"
+                      id="textColor">
+                      <option
+                        *ngFor="let itemcategory of categoryList"
+                        value="{{ itemcategory }}"
+                      >
+                        {{ itemcategory }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label id="labeltext">Product Name </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label id="labeltext">:</label>
+                  </div>
+                  <div class="col-lg-5">
+                    <select
+                      [(ngModel)]="model.productName"
+                      #productName="ngModel"
+                      name="productName"
+                      placeholder="     ltr/kg/pcs      "
+                      id="textColor"
+                      (change)="
+                        getNetAmount(
+                          this.model.productName,
+                          this.model.quantity,
+                          this.model.category
+                        )
+                      "
+                    >
+                      <option
+                        *ngFor="let itemproduct of productList"
+                        value="{{ itemproduct }}"
+                      >
+                        {{ itemproduct }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label id="labeltext">Quantity </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label id="labeltext">:</label>
+                  </div>
+                  <div class="col-lg-5">
+                    <input
+                      [(ngModel)]="model.quantity"
+                      #quantity="ngModel"
+                      name="quantity"
+                      id="textColor"
+                      (change)="
+                        getNetAmount(
+                          this.model.productName,
+                          this.model.quantity,
+                          this.model.category
+                        )
+                      "
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label id="labeltext">Date </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label id="labeltext">:</label>
+                  </div>
+                  <div class="col-lg-5">
+                    <input
+                      type="text"
+                      [(ngModel)]="model.soDate"
+                      #soDate="ngModel"
+                      id="textColor"
+                      value="{{ todayDate | date: 'dd/MM/yyyy' }}"
+                      readonly
+                    />
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label id="labeltext">Customer Name </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label id="labeltext">:</label>
+                  </div>
+                  <div class="col-lg-5">
+                    <ng2-completer
+                      placeholder="Customer name"
+                      [(ngModel)]="model.customerName"
+                      name="customerName"
+                      #customerName="ngModel"
+                      [datasource]="dataService"
+                      [minSearchLength]="0"
+                      id="textSize2"
+                    ></ng2-completer>
+                    <!-- <select [(ngModel)]="model.customerName" #customerName="ngModel" name="customerName" id="textColor">
+                            <option *ngFor="let itemCustomer of customerList" value="{{ itemCustomer.customerName }}"> {{ itemCustomer.customerName }} </option> 
+                          </select> -->
+                  </div>
+                </div>
+                <div *ngIf="ErrorHandle">
+                  <p style="color: red;font-size: 14px;">{{ ErrorMsg }}</p>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-6">
+                    <label id="labeltext">Description </label>
+                  </div>
+                  <div class="col-lg-1">
+                    <label id="labeltext">:</label>
+                  </div>
+                  <div class="col-lg-5">
+                    <textarea
+                      type="text"
+                      [(ngModel)]="model.description" id="textColor"
+                      #description="ngModel"
+                      name="description"
+                      id="textColor"
+                    ></textarea>
+                  </div>
+                </div>
+                <br />
+                <button
+                  (click)="addProduct(this.model.sNo)"
+                  class="addButton"
+                  id="newSalesOrder">
+                  Add Product
+                </button>
+                <br /><br />
+              </div>
+              <div class="col-lg-1"></div>
+              <div class="col-lg-6">
+                <br/>
+                <div id="date-details">
+                  <p class="text">Sales Order Summary</p>
+                  <div class="row" id="date">
+                    <div class="col-md-5 col-xs-5 col-lg-5" id="purchasetext">
+                      Date of PO
+                    </div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                      <p id="purchaseoutput">
+                        {{ todayDate | date: "dd/MM/yyyy" }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row" id="date">
+                    <div class="col-md-5 col-xs-5 col-lg-5" id="purchasetext">
+                      Customer
+                    </div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                      <p id="purchaseoutput">{{ model.customerName }}</p>
+                    </div>
+                  </div>
+                  <div class="row" id="date">
+                    <div class="col-md-5 col-xs-5 col-lg-5" id="purchasetext">
+                      Total Product
+                    </div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                      <p id="purchaseoutput">{{ model.totalItem }} Item</p>
+                    </div>
+                  </div>
+                  <div class="row" id="date">
+                    <div class="col-md-5 col-xs-5 col-lg-5" id="purchasetext">
+                      Subtotal
+                    </div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                      <p id="purchaseoutput">{{ this.model.subTotal }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-5" id="purchasetext">
+                      Delivery Charge
+                    </div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                      <input
+                        class="form-control"
+                        type="text"
+                        id="deliveryCost"
+                        [(ngModel)]="this.model.deliveryCost"
+                        #deliveryCost="ngModel"
+                        style="width: 70%;height: 25px;"
+                        name="deliveryCost"
+                      />
+                    </div>
+                  </div>
+                  <br />
+                  <hr />
+                  <div class="row">
+                    <div class="col-md-5 col-xs-5 col-lg-5" id="purchasetext">
+                      TOTAL :
+                    </div>
+                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                      <p id="purchaseoutput">
+                        {{ this.model.subTotal - -this.model.deliveryCost }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-5 col-xs-5 col-lg-5" id="purchasetext">
+                        <button id="checkIn-butn" (click)="saveSales()"> Save </button>
+                        <!-- <div class="radio-toolbar">
+                          <label for="radio1" id="checkIn-butn" (click)="savePurchase()">Save</label>
+                        </div> -->
+                      </div>
+                      <div class="col-md-1 col-xs-1 col-lg-1"></div>
+                      <div class="col-md-6 col-xs-6 col-lg-6">
+                        <button id="checkOut-butn" (click)="cancelSales()"> Cancel </button>
+                      </div>
+                  </div><br/>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="mb-3">
+            <table id="test" *ngIf="salestable">
+              <thead style="background-color: #3c8dbc;color:white;">
+                <th style="padding-right: 10px;padding: 9px;">No.</th>
+                <th style="padding-right: 10px;padding: 9px;">Product Name</th>
+                <th style="padding-right: 10px;padding: 9px;">Category</th>
+                <th style="padding-right: 10px;padding: 9px;">Customer</th>
+                <th style="padding-right: 10px;padding: 9px;">SO Date</th>
+                <th style="padding-right: 10px;padding: 9px;">Quantity</th>
+                <th style="padding-right: 10px;padding: 9px;">Description</th>
+                <th style="padding-right: 10px;padding: 9px;">Subtotal</th>
+                <th style="padding-right: 10px;padding: 9px;">Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let arr of fieldArray; let i = index">
+                  <td id="middleContent">{{ i + 1 }}</td>
+                  <td id="middleContent">{{ arr.productName }}</td>
+                  <td id="middleContent">{{ arr.category }}</td>
+                  <td id="middleContent">{{ arr.customerName }}</td>
+                  <td id="middleContent">
+                    {{ todayDate | date: "dd/MM/yyyy" }}
+                  </td>
+                  <td id="middleContent">{{ arr.quantity }}</td>
+                  <td id="middleContent">{{ arr.description }}</td>
+                  <td id="middleContent">{{ arr.netAmount }}</td>
+                  <td id="middleContent">
+                    <i class="fas fa-trash" (click)="deleteFieldValue(i)" style="cursor: pointer;"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Submit Button -->
+        </div>
+        <!-- Non-Stock Div Calling -->
+        <!-- Stock Calling Div Start -->
+      
+        <!-- Stock Calling End -->
+      </div>
+    </div>
+  </div>
+  <br /><br /><br />
+</div>

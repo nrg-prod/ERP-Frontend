@@ -1,0 +1,66 @@
+@import "_base";
+
+button {
+  appearance: none;
+  background-color: transparent;
+  color: $white;
+}
+
+.actions {
+  i {
+    cursor: pointer;
+    padding: 0 15px;
+  }
+}
+button {
+  border: 1px solid $white;
+}
+.mat-tab-body-content {
+  overflow: hidden;
+}
+.mat-input-element {
+  font: inherit;
+  font-family: fontawesome;
+  background: #58666e;
+  color: white;
+  height: 35px;
+  outline: 0;
+  margin: 10;
+  width: 75%;
+  max-width: 100%;
+  vertical-align: bottom;
+  text-align: start;
+  border-radius: 6px;
+  padding: 11px;
+  margin-top: -20px;
+}
+::ng-deep td.mat-cell,
+::ng-deep td.mat-footer-cell {
+  border-bottom: 1px solid white;
+}
+::ng-deep .mat-form-field-underline,
+::ng-deep .mat-form-field-ripple {
+  background-color: #243641 !important;
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #58666e !important;
+  margin-top: 10px;
+}
+::ng-deep .mat-form-field-empty.mat-form-field-label {
+  color: white;
+  font-size: 12px;
+}
+#dateBox{
+  background-color: #243642;
+  width: 40%;
+  font-size: 12px;
+  color: white;
+  border: 1px solid white;
+}
+
+.ngTable{
+  display: block;
+  overflow: auto;
+  height: 500px;
+  width: 100%;
+}

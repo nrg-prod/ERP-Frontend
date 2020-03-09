@@ -1,331 +1,134 @@
-<!-- header start -->
- 
-<mat-toolbar color="warn" style="background-color: #182A36;">
-  <mat-toolbar-row style="height: 80px;">
-
-  <div class=" col-1 col-lg-1">
-  <!--  <button type="button" aria-label="Toggle sidenav" mat-icon-button 
-    (click)="drawer.toggle()" color="primary" id="outline-none">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button> -->
-    
-
-    <button id="outline-none" mat-icon-button color='primary' (click) ='sidenav.toggle()'class ='toogleSidenav'[ngClass]="showToggle">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+<main>
+  <!-- Dashboard Widgets: Sales, Completed Orders, Purchase, Total Earnigs -->
+  <div class="d-flex justify-content-stretch">
+    <ng-container *ngFor="let widget of widgets">
+      <div class="col pl-4 widget">
+        <app-dashboard-widget [param]="widget"></app-dashboard-widget>
+      </div>
+    </ng-container>
   </div>
 
-  <div class="col-md-2 col-2 col-lg-1">
-        <img src="./assets/images/nrg_logo.png" id="nrg-logo-paddding" [routerLink]="['/landingpage']"/>
+  <!-- END: Dashboard Widgets: Sales, Completed Orders, Purchase, Total Earnigs -->
+
+  <!-- Data Widgets: Recent Updates, Date & Time, Stock -->
+  <div class="row justify-content-stretch m-0">
+    <div class="col p-3 p-0-important-l">
+      <div class="w-100 pb-3 ">
+        <app-data-widget [title]="'Recent Updates'">
+          <div class="recent-updates">
+            <div
+              *ngFor="let recentUpdate of recentUpdates"
+              class="font-sm mb-2"
+            >
+              {{ recentUpdate.date }} &nbsp; {{ recentUpdate.update }}
+            </div>
+          </div>
+        </app-data-widget>
+      </div>
+      <div class="w-100">
+        <app-data-widget [title]="'Stock'">
+          <div class="stock">
+            <div *ngFor="let stock of stocks" class="font-sm p-2">
+              {{ stock.item }} &nbsp;
+              <span class="text-right">{{ stock.quantity }}</span>
+            </div>
+          </div>
+        </app-data-widget>
+      </div>
+    </div>
+    <div class="col p-3 p-0-important-r">
+      <app-data-widget [title]="'Date & Time'">
+        <div class="row">
+          <div class="col-7 col-md-7 col-lg-7">
+            <div id="calendor-box">
+              <div class="calendar-wrapper">
+                <mat-calendar
+                  class="col-11"
+                  #calendar
+                  [(selected)]="selectedDate"
+                  (selectedChange)="dateChanged($event)"
+                >
+                </mat-calendar>
+              </div>
+            </div>
+          </div>
+          <div class="col-5 col-md-5 col-lg-5">
+            <div id="date-event-box" class="p-2">
+              <div style="height: 10px;"></div>
+              <div
+                *ngIf="this.model.date; else NoDateSelected"
+                id="date-shown-box"
+              >
+                <p id="date-eventfont">{{ this.model.date | date }}</p>
+                <p id="date-eventfont">
+                  {{ this.model.date | date: "HH:mm:ss" }}
+                </p>
+              </div>
+              <ng-template #NoDateSelected>
+                <div id="date-shown-box" class="text-center">Select a date</div>
+              </ng-template>
+
+              <div id="event-box" class="p-2"></div>
+            </div>
+          </div>
+        </div>
+      </app-data-widget>
+    </div>
   </div>
-  <div class="col-md-5 col-3 col-lg-3">
-    <input type="text" [(ngModel)]="searchText" autocomplete="on" 
-    placeholder="&#xf002; search here" class="searchicon"/>  
+
+  <!-- END: Data Widgets: Recent Updates, Date & Time, Stock -->
+
+  <!-- Data Widget : Sales Total -->
+  <div class="w-100">
+    <app-data-widget [title]="'Sales Total'">
+      <div class="sales">
+        <table mat-table [dataSource]="sales" matSort>
+          <ng-container matColumnDef="invoicenumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Invoice number
+            </th>
+            <td mat-cell *matCellDef="let sale">
+              {{ sale.invoicenumber }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="client">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
+            <td mat-cell *matCellDef="let sale">{{ sale.client }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Date
+            </th>
+            <td mat-cell *matCellDef="let sale">{{ sale.date }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Status
+            </th>
+            <td mat-cell *matCellDef="let sale">
+              <p class="{{ sale.status.toLowerCase() }} p-2 m-0">
+                {{ sale.status }}
+              </p>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            [ngClass]="table - row"
+            tabindex="1"
+            *matRowDef="let row; columns: displayedColumns"
+          ></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+    </app-data-widget>
   </div>
-  <div class="col-md-1 col-1 col-lg-3">
-    <alert></alert> 
-  </div>
+  <!-- END: Data Widget : Sales Total -->
 
-
-  <div class="col-lg-1"></div>
-
-  <div class="col-2 col-lg-2">
-      <div class="dropdown">
-          <div class="dropbtn icons btn-right showLeft" (click)="showDropdown()">
-              <div id="user-img"> 
-                  <img src="./assets/images/user.png">
-               </div>
-          </div>
-          <div id="myDropdown" class="dropdown-content">
-              <div id="user-imag"> 
-                  <img src="./assets/images/user.png" style="margin-left: 105px;">
-               </div>
-               <br/>
-               <div id="div-details">
-                  <h2 id="black-color">Hendry</h2>
-                  <label style="margin-left: -25px;">General Manager</label>
-              </div>
-          </div>
-     </div>
-</div>
-
-<div class="col-md-5 col-4 col-lg-2">
-  <div class="row">
-    <div id="user-img1">
-        <i class="fa fa-cog" aria-hidden="true" id="icon-color"></i>
-      </div>
-      <div id="user-img2">
-        <i [routerLink]="['/login']" class="fa fa-power-off" aria-hidden="true" id="icon-color">   </i>
-        </div>
-   </div>
- </div>
-
-
-
-
-  </mat-toolbar-row>
-</mat-toolbar>
-<!-- header end -->
-<br/><br/>
-
-<mat-sidenav-container class="example-container">
-  <!-- <mat-sidenav #drawer mode="side" opened role="navigation"> -->
-    <mat-sidenav class="sidenav" #sidenav [mode]="mode" [opened]="openSidenav" style="height: 98%;">
-    <mat-nav-list style="width: 250px;margin-top: 25px;">
-      <ng-container *ngFor="let item of menuItems let i=index">
-          <mat-list-item  class="white-hover">  
-         <a mat-list-item      style="font-family:'Lato',Georgia,Arial,sans-serif;font-size: medium;"
-          routerLink= {{item.pageName}} > {{item.name}}</a>
-             <mat-icon mat-list-icon>
-              
-               <img width="20" height="20" src={{menuItemsIcons[i].name}} />
-
-             </mat-icon> 
-
-
-            </mat-list-item>
-      </ng-container>
-
-    </mat-nav-list>
-  
-  
-  </mat-sidenav>
-  <mat-sidenav-content class="content" style="background: #2F4756">
-
-<br/>
-<!-- <div *ngIf="notSelected"> -->
-    <div *ngIf="route.firstChild.children.length === 0">
-
-      <div style="height: 20px;"></div>
-      <div style="margin: 5px;">
-      <div class="row">
-        <div class="col-3 col-md-3 col-lg-3">
-          <div id="sales-box">
-            <br/>
-            <h3>Sales</h3>
-            <div style="height: 20px;"></div>
-
-            <div class="row">
-              <div class="col-6 col-md-6 col-lg-6">
-                <i class="fa fa-shopping-cart" id="fontawe-icons" aria-hidden="true"></i>
-              </div>
-              <div class="col-6 col-md-6 col-lg-6">
-                <h3>350</h3>
-              </div>
-            </div>
-            <br/>
-            <p id="textalign-center">20% Higher than month</p>
-          </div>
-        </div>
-        <div class="col-3 col-md-3 col-lg-3">
-          <div id="completeorder-box">
-            <br/>
-            <h3>Completed Orders</h3>
-            <div style="height: 20px;"></div>
-
-            <div class="row">
-              <div class="col-6 col-md-6 col-lg-6">
-                <i class="fa fa-suitcase" id="fontawe-icons" aria-hidden="true"></i>
-              </div>
-              <div class="col-6 col-md-6 col-lg-6">
-                <h3>858</h3>
-              </div>
-            </div>
-            <br/>
-            <p id="textalign-center">70% Higher than month</p>
-          </div>
-        </div>
-        <div class="col-3 col-md-3 col-lg-3">
-          <div id="purchase-box">
-            <br/>
-            <h3>Purchase</h3>
-            <div style="height: 20px;"></div>
-
-            <div class="row">
-              <div class="col-6 col-md-6 col-lg-6">
-                <i class="fa fa-line-chart" id="fontawe-icons" aria-hidden="true"></i>
-              </div>
-              <div class="col-6 col-md-6 col-lg-6">
-                <h3>128</h3>
-              </div>
-            </div>
-            <br/>
-            <p id="textalign-center">20% Higher than month</p>
-          </div>
-        </div>
-        <div class="col-3 col-md-3 col-lg-3">
-          <div id="totaleraning-box">
-            <br/>
-            <h3>Total Earnings</h3>
-            <div style="height: 20px;"></div>
-
-            <div class="row">
-              <div class="col-6 col-md-6 col-lg-6">
-                <i class="fa fa-usd" id="fontawe-icons" aria-hidden="true"></i>
-              </div>
-              <div class="col-6 col-md-6 col-lg-6">
-                <h3>1000</h3>
-              </div>
-            </div>
-            <br/>
-            <p id="textalign-center">15% Higher than month</p>
-          </div>
-        </div>
-      </div>
-      
-
-      <div style="height: 20px;"></div>
-      <div class="row">
-        <div class="col-6 col-md-6 col-lg-6">
-          <div id="recentupdate-box">
-            <br/>
-            <h3>Recent Updates</h3>
-            <div id="recentupdate-detail-box">
-              <div class="row">
-                <div class="col-2 col-md-2 col-lg-2">
-                  <p>30/01/19 </p>
-                  <p>05/02/19 </p>
-                  <p>12/02/19 </p>
-                  <p>26/02/19 </p>
-                  <p>26/02/19 </p>
-                  <p>12/02/19 </p>
-                  <p>05/02/19 </p>
-                </div>
-                <div class="col-10 col-md-10 col-lg-10">
-                  <p>Purchase from ‘Carbon Composite’ Complete! </p>
-                  <p>Stock Updated </p>
-                  <p>New Discount Retail ‘Item #13241’ Apply </p>
-                  <p>Paulus join us as ‘Marketing Manager’</p>
-                  <p>Paulus join us as ‘Marketing Manager’</p>
-                  <p>Stock Updated </p>
-                  <p>Stock Updated </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <br/>
-          <div id="stock-box">
-            <br/>
-            <h3>Stock</h3>
-            <div id="table-box">
-              <table>
-                <tr class="d0">
-                  <td style="width: 300px;">Twill 2x2 200 gsm</td>
-                  <td>24R | 692 M</td>
-                </tr>
-                <tr class="d1">
-                  <td>Twill 2x2 200 gsm</td>
-                  <td>24R | 692 M</td>
-                </tr>
-                <tr class="d0">
-                  <td>Twill 2x2 200 gsm</td>
-                  <td>24R | 692 M</td>
-                </tr>
-                <tr class="d1">
-                  <td>Twill Red Reflective 2x2 200 gsm</td>
-                  <td>24R | 692 M</td>
-                </tr>
-                <tr class="d0">
-                  <td>Twill Red Reflective 2x2 200 gsm</td>
-                  <td>24R | 692 M</td>
-                </tr>
-                <tr class="d1">
-                  <td>Twill 2x2 200 gsm</td>
-                  <td>24R | 692 M</td>
-                </tr>
-                <tr class="d0">
-                  <td>Twill 2x2 200 gsm</td>
-                  <td>24R | 692 M</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="col-6 col-md-6 col-lg-6">
-          <div id="datetime-box">
-            <br/>
-            <h3>Date & Time</h3>
-            <br/>
-            <div class="row">
-              <div class="col-7 col-md-7 col-lg-7">
-                <div id="calendor-box">
-                  <div class="calendar-wrapper">
-                    <mat-calendar #calendar [(selected)]="selectedDate" (selectedChange)="dateChanged($event)">
-                    </mat-calendar>
-                  </div>
-                </div>
-              </div>
-              <div class="col-5 col-md-5 col-lg-5">
-                <div id="date-event-box">
-                  <div style="height: 10px;"></div>
-                  <div id="date-shown-box">
-                    <p id="date-eventfont">{{  this.model.date }}</p>
-                  </div>
-                  <div id="event-box"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <br/>
-      <div id="totalsale-box">
-        <br/>
-        <h3>Sales Total</h3>
-
-        <div id="salestable-box">
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-      <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" matSort>
-          
-              <ng-container matColumnDef="invoicenumber">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoicenumber </th>
-                  <td mat-cell *matCellDef="let row"> {{row.invoicenumber}} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="client">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
-                  <td mat-cell *matCellDef="let row"> {{row.client}} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-                  <td mat-cell *matCellDef="let row"> {{row.date}} </td>
-              </ng-container>
-              
-              
-              <ng-container matColumnDef="status">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-                  <td mat-cell *matCellDef="let row"> 
-                    <label style="font-size: 15px;width: 80px;margin: 5px;text-align: center;" 
-                [ngStyle]="{'background': (row.status === 'completed') ? '#29C0B1' : (row.status === 'delayed') ? '#FBBC06' : (row.status === 'cancel') ? '#FF3366' : ''}"> <p style="margin: 3px;">{{ row.status }}</p></label>
-                  </td>
-              </ng-container>
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-              <tr mat-row [ngClass]="table-row" tabindex="1" 
-              *matRowDef="let row; columns: displayedColumns;">
-              </tr>
-          </table>
-        </div>
-        
-      </div>
-
-      </div>
-
-  </div>
-</div>
-    
-    <br/>
-
-
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
+  <router-outlet></router-outlet>
+</main>

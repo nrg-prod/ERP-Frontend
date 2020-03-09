@@ -1,0 +1,33 @@
+@import "_base";
+
+.header-margin-adjust {
+  height: calc(100vh - 70px);
+  position: absolute;
+  top: 70px;
+}
+
+mat-drawer-container,
+mat-drawer,
+.mat-list-base .mat-list-item {
+  background-color: inherit;
+  color: inherit !important;
+}
+
+img {
+  width: 35px;
+}
+
+.menu-icon-margin-adjust {
+  color: inherit;
+  margin-left: 15px;
+}
+
+.mat-drawer {
+  p {
+    @include fontSize($normal);
+  }
+}
+
+mat-drawer {
+  background-color: $sidenav-bg;
+}

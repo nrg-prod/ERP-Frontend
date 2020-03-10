@@ -9,7 +9,7 @@ ng build --base-href=http://erp.neotural.com/ --prod --aot=true --build--optimiz
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://34.214.60.154:8095/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
